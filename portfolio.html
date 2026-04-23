@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavan Shiraguppi | GenAI & MLOps Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: '#050505',
+                        charcoal: '#0a0a0a',
+                        graphite: '#171717',
+                        silver: '#c0c0c0',
+                        platinum: '#e5e5e5',
+                        mist: '#f5f5f5',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #050505;
+            color: #e5e5e5;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+        .cursor-ring {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9998;
+            transition: all 0.15s ease-out;
+        }
+        .cursor-ring.hovering {
+            transform: scale(2);
+            border-color: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Noise Overlay */
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9000; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Hero Canvas */
+        #hero-canvas {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: 0;
+        }
+
+        /* Text Reveal */
+        .reveal-text {
+            overflow: hidden;
+        }
+        .reveal-text span {
+            display: inline-block;
+            transform: translateY(100%);
+        }
+
+        /* Magnetic Button */
+        .magnetic-btn {
+            position: relative; display: inline-flex;
+            align-items: center; justify-content: center;
+            overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .magnetic-btn::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .magnetic-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Skill Pill */
+        .skill-pill {
+            position: relative; overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .skill-pill::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+        }
+        .skill-pill:hover::after {
+            animation: shimmer 0.6s ease forwards;
+        }
+        .skill-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(255,255,255,0.1);
+        }
+        @keyframes shimmer {
+            to { transform: translateX(100%); }
+        }
+
+        /* Timeline */
+        .timeline-line {
+            position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
+            background: linear-gradient(to bottom, transparent, #333, #333, transparent);
+        }
+        .timeline-dot {
+            position: absolute; left: -4px; width: 9px; height: 9px;
+            border-radius: 50%; background: #050505; border: 1px solid #666;
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover .timeline-dot {
+            background: #fff; border-color: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+
+        /* Card Hover */
+        .glass-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* Section transitions */
+        .section-fade {
+            opacity: 0; transform: translateY(40px);
+        }
+
+        /* Link underline animation */
+        .link-hover {
+            position: relative;
+        }
+        .link-hover::after {
+            content: ''; position: absolute; bottom: -2px; left: 0;
+            width: 0; height: 1px; background: #fff;
+            transition: width 0.3s ease;
+        }
+        .link-hover:hover::after {
+            width: 100%;
+        }
+
+        /* Publication card */
+        .pub-card {
+            position: relative; overflow: hidden;
+        }
+        .pub-card .pub-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .pub-card:hover .pub-overlay {
+            opacity: 1;
+        }
+        .pub-card .pub-content {
+            transform: translateY(20px); opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .pub-card:hover .pub-content {
+            transform: translateY(0); opacity: 1;
+        }
+
+        /* Number counter */
+        .counter-value {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Nav */
+        .nav-hidden { transform: translateY(-100%); }
+        .nav-visible { transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 nav-hidden">
+        <div class="w-full px-6 lg:px-12 py-4 backdrop-blur-md bg-charcoal/80 border-b border-white/5">
+            <div class="flex items-center justify-between">
+                <a href="#hero" class="font-display text-xl font-bold tracking-tight text-white hover-target">PS.</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">About</a>
+                    <a href="#experience" class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">Experience</a>
+                    <a href="#skills" class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">Skills</a>
+                    <a href="#publications" class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">Work</a>
+                    <a href="#contact" class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">Contact</a>
+                </div>
+                <a href="mailto:shiraguppipavan@gmail.com" class="magnetic-btn px-5 py-2 border border-white/20 text-xs uppercase tracking-widest hover:bg-white hover:text-obsidian transition-all hover-target">
+                    Let's Talk
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+        <canvas id="hero-canvas"></canvas>
+        <div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+            <div class="mb-6 overflow-hidden">
+                <p class="hero-sub text-xs md:text-sm uppercase tracking-[0.3em] text-silver/60 font-light">GenAI Engineer · MLOps · DevOps · Watsonx SME</p>
+            </div>
+            <h1 class="hero-title font-display text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter leading-none mb-8">
+                <span class="block overflow-hidden"><span class="inline-block">PAVAN</span></span>
+                <span class="block overflow-hidden"><span class="inline-block text-platinum/40">SHIRAGUPPI</span></span>
+            </h1>
+            <div class="hero-desc max-w-2xl mx-auto mb-12">
+                <p class="text-sm md:text-base text-silver/70 leading-relaxed font-light">
+                    Architecting production-grade AI infrastructure on IBM watsonx and OpenShift. 
+                    Bridging the gap between AI development and platform operations at scale.
+                </p>
+            </div>
+            <div class="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#experience" class="magnetic-btn px-8 py-4 bg-white text-obsidian text-sm font-semibold uppercase tracking-widest hover:bg-platinum transition-colors hover-target">
+                    View My Work
+                </a>
+                <a href="#contact" class="magnetic-btn px-8 py-4 border border-white/20 text-sm font-semibold uppercase tracking-widest hover:border-white/50 transition-colors hover-target">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+            <span class="text-[10px] uppercase tracking-widest">Scroll</span>
+            <div class="w-px h-12 bg-gradient-to-b from-white/50 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="relative w-full py-32 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-16 items-start">
+                <div class="lg:col-span-4 section-fade">
+                    <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">01 — About</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+                        Engineering the<br><span class="text-platinum/30">Future of AI</span>
+                    </h2>
+                </div>
+                <div class="lg:col-span-8 section-fade">
+                    <div class="space-y-6 text-silver/70 text-base md:text-lg leading-relaxed font-light">
+                        <p>
+                            I'm a <strong class="text-white font-medium">Generative AI Engineer and MLOps practitioner</strong> with a unique trajectory spanning 
+                            Systems Integration, Data Science, and LLM Engineering. Currently leading as a <strong class="text-white font-medium">Watsonx Platform SME at IBM</strong>, 
+                            I architect and deploy production-grade AI infrastructure contributing to <strong class="text-white font-medium">$10M+ in revenue</strong>.
+                        </p>
+                        <p>
+                            My expertise lies in CI/CD pipelines for model deployment, LLM fine-tuning, RAG architectures, and enterprise DevOps practices. 
+                            I specialize in bridging AI development and platform operations at scale — from air-gapped on-premise GPU clusters to 
+                            cloud-native orchestration on Red Hat OpenShift.
+                        </p>
+                        <p>
+                            Beyond code, I'm a <strong class="text-white font-medium">bilingual professional</strong> (English & Japanese N2) with international 
+                            experience across India and Japan, having engineered robotic automation systems and multi-agent AI workflows.
+                        </p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/10">
+                        <div class="section-fade">
+                            <div class="font-display text-4xl md:text-5xl font-bold text-white counter-value" data-target="10">0</div>
+                            <div class="text-xs uppercase tracking-widest text-silver/50 mt-2">Million+ Revenue</div>
+                        </div>
+                        <div class="section-fade">
+                            <div class="font-display text-4xl md:text-5xl font-bold text-white counter-value" data-target="7">0</div>
+                            <div class="text-xs uppercase tracking-widest text-silver/50 mt-2">Years Experience</div>
+                        </div>
+                        <div class="section-fade">
+                            <div class="font-display text-4xl md:text-5xl font-bold text-white">40%</div>
+                            <div class="text-xs uppercase tracking-widest text-silver/50 mt-2">Latency Reduction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="relative w-full py-32 px-6 lg:px-12 bg-graphite/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">02 — Experience</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Career Trajectory</h2>
+            </div>
+
+            <div class="relative space-y-16 pl-8 md:pl-0">
+                <div class="timeline-line hidden md:block" style="left: 50%;"></div>
+
+                <!-- IBM Watsonx SME -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16 section-fade">
+                    <div class="hidden md:block"></div>
+                    <div class="relative">
+                        <div class="timeline-dot hidden md:block" style="top: 8px;"></div>
+                        <div class="glass-card rounded-2xl p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs uppercase tracking-widest text-silver/50">01/2026 — Present</span>
+                                <span class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">Current</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-1">Watsonx Platform SME</h3>
+                            <p class="text-silver/50 text-sm mb-6">IBM India Pvt Ltd · Bengaluru, India</p>
+                            <ul class="space-y-3 text-sm text-silver/70">
+                                <li class="flex items-start gap-3">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Leading secure on-premise deployments of full IBM watsonx stack (.ai, .data, Orchestrate)
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Managing end-to-end deployment on Red Hat OpenShift with operator lifecycle & GPU node pools
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Architecting scalable air-gapped inference clusters for Granite & third-party LLMs
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GenAI Engineer -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16 section-fade">
+                    <div class="relative md:text-right">
+                        <div class="timeline-dot hidden md:block" style="top: 8px; left: auto; right: -4px;"></div>
+                        <div class="glass-card rounded-2xl p-8 md:ml-auto">
+                            <div class="flex items-center justify-between mb-4 md:flex-row-reverse">
+                                <span class="text-xs uppercase tracking-widest text-silver/50">08/2023 — 01/2026</span>
+                                <span class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">IBM</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-1">Generative AI Engineer</h3>
+                            <p class="text-silver/50 text-sm mb-6">IBM India Pvt Ltd · Bengaluru, India</p>
+                            <ul class="space-y-3 text-sm text-silver/70">
+                                <li class="flex items-start gap-3 md:flex-row-reverse">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Spearheaded high-impact GenAI engagements contributing to $10M+ revenue
+                                </li>
+                                <li class="flex items-start gap-3 md:flex-row-reverse">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Fine-tuned Llama, Granite, and GPT variants; reduced token latency by 40%
+                                </li>
+                                <li class="flex items-start gap-3 md:flex-row-reverse">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Built RAG systems with ChromaDB & Pinecone; AI agents with Watsonx Orchestrate & LangChain
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block"></div>
+                </div>
+
+                <!-- GenAI Advisor -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16 section-fade">
+                    <div class="hidden md:block"></div>
+                    <div class="relative">
+                        <div class="timeline-dot hidden md:block" style="top: 8px;"></div>
+                        <div class="glass-card rounded-2xl p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs uppercase tracking-widest text-silver/50">02/2023 — 08/2023</span>
+                                <span class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">Advisor</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-1">Generative AI Advisor, SME</h3>
+                            <p class="text-silver/50 text-sm mb-6">Kushagramati Analytics · Bengaluru, India</p>
+                            <ul class="space-y-3 text-sm text-silver/70">
+                                <li class="flex items-start gap-3">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Advised enterprise clients on GenAI adoption strategies and high-ROI use cases
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Conducted feasibility studies for RAG architectures and model selection
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Established governance frameworks for LLM evaluation and hallucination metrics
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevOps Engineer -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16 section-fade">
+                    <div class="relative md:text-right">
+                        <div class="timeline-dot hidden md:block" style="top: 8px; left: auto; right: -4px;"></div>
+                        <div class="glass-card rounded-2xl p-8 md:ml-auto">
+                            <div class="flex items-center justify-between mb-4 md:flex-row-reverse">
+                                <span class="text-xs uppercase tracking-widest text-silver/50">04/2022 — 02/2023</span>
+                                <span class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">Japan</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-1">DevOps Engineer</h3>
+                            <p class="text-silver/50 text-sm mb-6">HCI · Osaka, Japan</p>
+                            <ul class="space-y-3 text-sm text-silver/70">
+                                <li class="flex items-start gap-3 md:flex-row-reverse">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Designed CI/CD pipelines for robotic software; reduced release cycle by 30%
+                                </li>
+                                <li class="flex items-start gap-3 md:flex-row-reverse">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Containerized AI inference services with Docker across dev & prod
+                                </li>
+                                <li class="flex items-start gap-3 md:flex-row-reverse">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Implemented Prometheus & Grafana monitoring for ML models & robotic services
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block"></div>
+                </div>
+
+                <!-- Systems Engineer -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16 section-fade">
+                    <div class="hidden md:block"></div>
+                    <div class="relative">
+                        <div class="timeline-dot hidden md:block" style="top: 8px;"></div>
+                        <div class="glass-card rounded-2xl p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs uppercase tracking-widest text-silver/50">12/2020 — 03/2022</span>
+                                <span class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">Japan</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-1">Systems Engineer</h3>
+                            <p class="text-silver/50 text-sm mb-6">HCI · Osaka, Japan</p>
+                            <ul class="space-y-3 text-sm text-silver/70">
+                                <li class="flex items-start gap-3">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Architected RoboCafe bio-system with Kawasaki, Yaskawa, Mitsubishi industrial arms
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Integrated Computer Vision models with robot arm kinematics for autonomous manipulation
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>
+                                    Bridged hardware interfaces (PLCs, Robot Controllers) with software AI modules
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="relative w-full py-32 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">03 — Expertise</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Technical Arsenal</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Generative AI -->
+                <div class="glass-card rounded-2xl p-8 section-fade group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+                        </div>
+                        <h3 class="font-display text-lg font-semibold">Generative AI</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">LLM Fine-tuning</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">RAG Architecture</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Prompt Optimization</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">LangChain</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Watsonx</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">RAGAS</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">CrewAI</span>
+                    </div>
+                </div>
+
+                <!-- DevOps -->
+                <div class="glass-card rounded-2xl p-8 section-fade group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"/></svg>
+                        </div>
+                        <h3 class="font-display text-lg font-semibold">DevOps & Infrastructure</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Red Hat OpenShift</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Kubernetes</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Docker</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Tekton</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">ArgoCD</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Ansible</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Terraform</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Helm</span>
+                    </div>
+                </div>
+
+                <!-- ML -->
+                <div class="glass-card rounded-2xl p-8 section-fade group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"/></svg>
+                        </div>
+                        <h3 class="font-display text-lg font-semibold">Machine Learning</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">PyTorch</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">TensorFlow</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Scikit-learn</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">XGBoost</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Hugging Face</span>
+                    </div>
+                </div>
+
+                <!-- Data Science -->
+                <div class="glass-card rounded-2xl p-8 section-fade group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"/></svg>
+                        </div>
+                        <h3 class="font-display text-lg font-semibold">Data Science</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Pandas</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">NumPy</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Statistical Modeling</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">A/B Testing</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">EDA</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Streamlit</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Gradio</span>
+                    </div>
+                </div>
+
+                <!-- NLP & CV -->
+                <div class="glass-card rounded-2xl p-8 section-fade group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
+                        </div>
+                        <h3 class="font-display text-lg font-semibold">NLP & Computer Vision</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">BERT</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">GPT</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Transformers</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">OpenCV</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Sentiment Analysis</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Text Classification</span>
+                    </div>
+                </div>
+
+                <!-- Infrastructure -->
+                <div class="glass-card rounded-2xl p-8 section-fade group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.072 0 2.012.578 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7"/></svg>
+                        </div>
+                        <h3 class="font-display text-lg font-semibold">AI Infrastructure</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">AWS SageMaker</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">MLflow</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Model Serving</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">LlamaIndex</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">ChromaDB</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Pinecone</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">FAISS</span>
+                        <span class="skill-pill px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-silver/80">Weaviate</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="mt-12 glass-card rounded-2xl p-8 section-fade">
+                <h3 class="font-display text-lg font-semibold mb-6">Languages & Scripting</h3>
+                <div class="flex flex-wrap gap-3">
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                        <div class="w-2 h-2 rounded-full bg-white"></div>
+                        <span class="text-sm text-silver/80">Python</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                        <div class="w-2 h-2 rounded-full bg-white/60"></div>
+                        <span class="text-sm text-silver/80">SQL</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                        <div class="w-2 h-2 rounded-full bg-white/60"></div>
+                        <span class="text-sm text-silver/80">Bash</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="relative w-full py-32 px-6 lg:px-12 bg-graphite/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">04 — Education</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Academic Foundation</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-card rounded-2xl p-8 section-fade group hover:bg-white/[0.04] transition-all">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <span class="font-display font-bold text-lg">IMT</span>
+                        </div>
+                        <span class="text-xs uppercase tracking-widest text-silver/50">2023 — 2024</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-2">MBA</h3>
+                    <p class="text-silver/60 text-sm mb-4">Design Thinking and Entrepreneurship</p>
+                    <p class="text-silver/50 text-xs">Institute of Management Technology, Ghaziabad</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 section-fade group hover:bg-white/[0.04] transition-all">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <span class="font-display font-bold text-lg">MIT</span>
+                        </div>
+                        <span class="text-xs uppercase tracking-widest text-silver/50">2015 — 2019</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-2">B.Tech</h3>
+                    <p class="text-silver/60 text-sm mb-4">Electronics and Instrumentation</p>
+                    <p class="text-silver/50 text-xs">Manipal Institute of Technology, Manipal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="relative w-full py-32 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">05 — Projects</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Featured Work</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="https://youtu.be/cvOc5uoqdBo" target="_blank" class="pub-card glass-card rounded-2xl overflow-hidden section-fade hover-target group">
+                    <div class="aspect-video bg-gradient-to-br from-graphite to-charcoal relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white/10 group-hover:text-white/20 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="pub-overlay flex items-end p-6">
+                            <div class="pub-content">
+                                <span class="text-xs uppercase tracking-widest text-silver/60">Watch Demo →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold mb-2 group-hover:text-platinum transition-colors">RoboCafe</h3>
+                        <p class="text-sm text-silver/60">Multi-Robot Cafe Automation System orchestrating industrial arms and service robots for seamless autonomous operations.</p>
+                    </div>
+                </a>
+
+                <a href="https://youtu.be/0SNUPvxoKJs" target="_blank" class="pub-card glass-card rounded-2xl overflow-hidden section-fade hover-target group">
+                    <div class="aspect-video bg-gradient-to-br from-graphite to-charcoal relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white/10 group-hover:text-white/20 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="pub-overlay flex items-end p-6">
+                            <div class="pub-content">
+                                <span class="text-xs uppercase tracking-widest text-silver/60">Watch Demo →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold mb-2 group-hover:text-platinum transition-colors">Library Robot</h3>
+                        <p class="text-sm text-silver/60">Autonomous Book Retrieval System with integrated computer vision and robotic kinematics for smart library automation.</p>
+                    </div>
+                </a>
+
+                <div class="pub-card glass-card rounded-2xl overflow-hidden section-fade group">
+                    <div class="aspect-video bg-gradient-to-br from-graphite to-charcoal relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white/10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.499 5.221 69.78 69.78 0 00-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold mb-2">Ritsumeikan University</h3>
+                        <p class="text-sm text-silver/60">Robotics Demo showcasing advanced multi-agent coordination and AI-driven automation at Ritsumeikan University, Japan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="relative w-full py-24 px-6 lg:px-12 bg-graphite/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="section-fade text-center md:text-left">
+                    <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto md:mx-0 mb-4">
+                        <svg class="w-5 h-5 text-silver/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                    </div>
+                    <h4 class="font-display font-semibold mb-1">Databricks</h4>
+                    <p class="text-xs text-silver/50">Lakehouse Fundamentals</p>
+                </div>
+                <div class="section-fade text-center md:text-left">
+                    <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto md:mx-0 mb-4">
+                        <svg class="w-5 h-5 text-silver/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                    </div>
+                    <h4 class="font-display font-semibold mb-1">AMR Robot</h4>
+                    <p class="text-xs text-silver/50">Intermediate Level Training</p>
+                </div>
+                <div class="section-fade text-center md:text-left">
+                    <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto md:mx-0 mb-4">
+                        <svg class="w-5 h-5 text-silver/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                    </div>
+                    <h4 class="font-display font-semibold mb-1">Japanese Language</h4>
+                    <p class="text-xs text-silver/50">JLPT N2 Certified</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative w-full py-32 px-6 lg:px-12">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">06 — Contact</span>
+                <h2 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">
+                    Let's Build<br><span class="text-platinum/30">Together</span>
+                </h2>
+                <p class="text-silver/60 text-lg max-w-xl mx-auto mb-12 font-light">
+                    Open to collaborations, consulting, and opportunities at the intersection of AI, infrastructure, and automation.
+                </p>
+            </div>
+
+            <div class="section-fade flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="mailto:shiraguppipavan@gmail.com" class="magnetic-btn px-10 py-5 bg-white text-obsidian text-sm font-bold uppercase tracking-widest hover:bg-platinum transition-colors hover-target">
+                    shiraguppipavan@gmail.com
+                </a>
+                <a href="tel:+918861239872" class="magnetic-btn px-10 py-5 border border-white/20 text-sm font-bold uppercase tracking-widest hover:border-white/50 transition-colors hover-target">
+                    +91 88612 39872
+                </a>
+            </div>
+
+            <div class="section-fade flex items-center justify-center gap-8">
+                <a href="https://linkedin.com" target="_blank" class="hover-target text-silver/40 hover:text-white transition-colors">
+                    <span class="text-xs uppercase tracking-widest">LinkedIn</span>
+                </a>
+                <span class="w-1 h-1 rounded-full bg-white/20"></span>
+                <span class="text-xs uppercase tracking-widest text-silver/40">Bengaluru, India</span>
+                <span class="w-1 h-1 rounded-full bg-white/20"></span>
+                <span class="text-xs uppercase tracking-widest text-silver/40">English · 日本語</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 px-6 lg:px-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-xs text-silver/30">© 2026 Pavan Shiraguppi. All rights reserved.</p>
+            <p class="text-xs text-silver/30">Designed & Built with precision.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Register GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = mouseX - 4 + 'px';
+            cursorDot.style.top = mouseY - 4 + 'px';
+        });
+
+        function animateRing() {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.left = ringX - 20 + 'px';
+            cursorRing.style.top = ringY - 20 + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        document.querySelectorAll('.hover-target').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'));
+        });
+
+        // Hide cursor on touch devices
+        if ('ontouchstart' in window) {
+            cursorDot.style.display = 'none';
+            cursorRing.style.display = 'none';
+            document.body.style.cursor = 'auto';
+        }
+
+        // Hero Canvas - Particle Network
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const particleCount = window.innerWidth < 768 ? 30 : 60;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.size = Math.random() * 2 + 0.5;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(255,255,255,0.15)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+
+        let frameCount = 0;
+        function animateCanvas() {
+            frameCount++;
+            if (frameCount % 2 === 0) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 150) {
+                            ctx.strokeStyle = `rgba(255,255,255,${0.05 * (1 - dist / 150)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        // Hero Animations
+        gsap.to('.hero-sub', { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
+        gsap.from('.hero-title span span', { 
+            y: '100%', duration: 1.2, stagger: 0.15, delay: 0.5, ease: 'power4.out' 
+        });
+        gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 1, delay: 1, ease: 'power3.out' });
+        gsap.from('.hero-cta', { opacity: 0, y: 30, duration: 1, delay: 1.2, ease: 'power3.out' });
+
+        // Navigation show/hide
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                navbar.classList.remove('nav-hidden');
+                navbar.classList.add('nav-visible');
+            } else {
+                navbar.classList.add('nav-hidden');
+                navbar.classList.remove('nav-visible');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Section fade animations
+        gsap.utils.toArray('.section-fade').forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+        });
+
+        // Counter animation
+        gsap.utils.toArray('.counter-value').forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            ScrollTrigger.create({
+                trigger: counter,
+                start: 'top 85%',
+                onEnter: () => {
+                    gsap.to(counter, {
+                        innerHTML: target,
+                        duration: 2,
+                        snap: { innerHTML: 1 },
+                        ease: 'power2.out'
+                    });
+                }
+            });
+        });
+
+        // Magnetic button effect
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
