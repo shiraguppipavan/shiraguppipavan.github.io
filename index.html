@@ -118,6 +118,10 @@
             color: #0a0a0a !important;
         }
 
+        body[data-theme="platinum"] .text-white\/70 {
+            color: rgba(10, 10, 10, 0.7) !important;
+        }
+
         body[data-theme="platinum"] .border-white\/5,
         body[data-theme="platinum"] .border-white\/10,
         body[data-theme="platinum"] .border-white\/20 {
@@ -780,10 +784,14 @@
             color: var(--text-primary);
             opacity: 0.06;
             position: absolute;
-            top: 1rem;
-            left: 1.5rem;
+            top: 0.75rem;
+            left: 1.25rem;
             pointer-events: none;
             user-select: none;
+        }
+
+        #testimonials .glass-card .relative.z-10 {
+            padding-top: 1.5rem;
         }
 
         /* Recognition cards */
