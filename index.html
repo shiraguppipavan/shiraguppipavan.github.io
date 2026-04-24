@@ -286,14 +286,20 @@
 
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.25rem;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
             grid-auto-rows: minmax(140px, auto);
+        }
+
+        @media (min-width: 480px) {
+            .bento-grid {
+                gap: 1.25rem;
+            }
         }
 
         .bento-card {
             position: relative;
-            padding: 1.75rem;
+            padding: 1.25rem;
             border-radius: 1.25rem;
             background: var(--glass-bg);
             border: 1px solid var(--border-subtle);
@@ -309,26 +315,34 @@
         }
 
         .bento-revenue {
-            grid-column: span 12;
+            grid-column: span 6;
         }
 
         .bento-latency {
-            grid-column: span 6;
+            grid-column: span 3;
         }
 
         .bento-years {
-            grid-column: span 6;
+            grid-column: span 3;
         }
 
         .bento-clients {
-            grid-column: span 7;
+            grid-column: span 3;
         }
 
         .bento-deploy {
-            grid-column: span 5;
+            grid-column: span 3;
         }
 
         @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+
+            .bento-card {
+                padding: 1.75rem;
+            }
+
             .bento-revenue {
                 grid-column: span 6;
                 grid-row: span 2;
@@ -1837,8 +1851,7 @@
     <section id="recognition" class="relative w-full py-20 px-6 lg:px-12 bg-graphite/30">
         <div class="max-w-7xl mx-auto">
             <div class="mb-10 section-fade">
-                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-2">Certifications &
-                    Recognition</span>
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">08 - Certifications & Recognition</span>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="recognition-card section-fade">
@@ -1876,7 +1889,7 @@
     <section id="testimonials" class="relative w-full py-32 px-6 lg:px-12">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20 section-fade">
-                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">08 - Testimonials</span>
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">09 - Testimonials</span>
                 <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight decode-text">From the Field</h2>
             </div>
 
@@ -1979,7 +1992,7 @@
     <section id="contact" class="relative w-full py-32 px-6 lg:px-12">
         <div class="max-w-4xl mx-auto text-center">
             <div class="section-fade">
-                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">09 - Contact</span>
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">10 - Contact</span>
                 <h2 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">Let's
                     Build<br><span class="text-platinum/30">Together</span></h2>
                 <p class="text-silver/60 text-lg max-w-xl mx-auto mb-12 font-light">Open to collaborations, consulting,
