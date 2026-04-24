@@ -10,6 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -44,40 +46,134 @@
             scroll-behavior: smooth;
         }
 
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #171717;
+            --text-primary: #e5e5e5;
+            --text-muted: rgba(229, 229, 229, 0.6);
+            --text-subtle: rgba(229, 229, 229, 0.4);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-strong: rgba(255, 255, 255, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-bg-hover: rgba(255, 255, 255, 0.04);
+            --accent-invert: #050505;
+            --noise-opacity: 0.03;
+            --scroll-track: #050505;
+            --scroll-thumb: #333;
+        }
+
+        body[data-theme="dawn"] {
+            --bg-primary: #0c0c0c;
+            --bg-secondary: #121212;
+            --bg-tertiary: #1c1c1c;
+        }
+
+        body[data-theme="platinum"] {
+            --bg-primary: #e8e8e8;
+            --bg-secondary: #dcdcdc;
+            --bg-tertiary: #cfcfcf;
+            --text-primary: #0a0a0a;
+            --text-muted: rgba(10, 10, 10, 0.65);
+            --text-subtle: rgba(10, 10, 10, 0.45);
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --border-strong: rgba(0, 0, 0, 0.2);
+            --glass-bg: rgba(0, 0, 0, 0.02);
+            --glass-bg-hover: rgba(0, 0, 0, 0.04);
+            --accent-invert: #ffffff;
+            --noise-opacity: 0.05;
+            --scroll-track: #e8e8e8;
+            --scroll-thumb: #999;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: #050505;
-            color: #e5e5e5;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             overflow-x: hidden;
             cursor: none;
+            transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body[data-theme="platinum"] .bg-graphite\/30 {
+            background-color: rgba(180, 180, 180, 0.25) !important;
+        }
+
+        body[data-theme="platinum"] .text-silver\/50,
+        body[data-theme="platinum"] .text-silver\/60,
+        body[data-theme="platinum"] .text-silver\/70,
+        body[data-theme="platinum"] .text-silver\/80,
+        body[data-theme="platinum"] .text-platinum\/40,
+        body[data-theme="platinum"] .text-platinum\/30,
+        body[data-theme="platinum"] .text-platinum\/60 {
+            color: var(--text-muted) !important;
+        }
+
+        body[data-theme="platinum"] .text-silver\/40,
+        body[data-theme="platinum"] .text-silver\/30 {
+            color: var(--text-subtle) !important;
+        }
+
+        body[data-theme="platinum"] .text-white {
+            color: #0a0a0a !important;
+        }
+
+        body[data-theme="platinum"] .border-white\/5,
+        body[data-theme="platinum"] .border-white\/10,
+        body[data-theme="platinum"] .border-white\/20 {
+            border-color: var(--border-subtle) !important;
+        }
+
+        body[data-theme="platinum"] .bg-white\/5,
+        body[data-theme="platinum"] .bg-white\/10 {
+            background: rgba(0, 0, 0, 0.04) !important;
+        }
+
+        body[data-theme="platinum"] .bg-white {
+            background: #0a0a0a !important;
+            color: #ffffff !important;
+        }
+
+        body[data-theme="platinum"] .text-obsidian {
+            color: #ffffff !important;
+        }
+
+        body[data-theme="platinum"] .bg-charcoal\/80 {
+            background: rgba(232, 232, 232, 0.8) !important;
+        }
+
+        body[data-theme="platinum"] .from-graphite,
+        body[data-theme="platinum"] .to-charcoal {
+            --tw-gradient-from: #cfcfcf !important;
+            --tw-gradient-to: #b8b8b8 !important;
         }
 
         .cursor-dot {
             width: 8px;
             height: 8px;
-            background: #fff;
+            background: var(--text-primary);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.1s ease;
+            transition: transform 0.1s ease, background 0.6s ease;
         }
 
         .cursor-ring {
             width: 40px;
             height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--border-strong);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9998;
-            transition: all 0.15s ease-out;
+            transition: all 0.15s ease-out, border-color 0.6s ease;
         }
 
         .cursor-ring.hovering {
             transform: scale(2);
-            border-color: rgba(255, 255, 255, 0.8);
-            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-primary);
+            background: var(--glass-bg);
         }
 
         .noise {
@@ -88,8 +184,247 @@
             height: 100%;
             pointer-events: none;
             z-index: 9000;
-            opacity: 0.03;
+            opacity: var(--noise-opacity);
+            transition: opacity 0.8s ease;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        body[data-theme="platinum"] .noise {
+            mix-blend-mode: multiply;
+        }
+
+        .availability-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 9999px;
+            border: 1px solid var(--border-subtle);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .availability-pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+            animation: availability-pulse 2s infinite;
+        }
+
+        @keyframes availability-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+            }
+        }
+
+        .marquee-wrap {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 3rem;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-wrap:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-subtle);
+            white-space: nowrap;
+            transition: color 0.3s ease;
+        }
+
+        .marquee-item:hover {
+            color: var(--text-primary);
+        }
+
+        .scramble-text {
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .decode-char {
+            display: inline-block;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.25rem;
+            grid-auto-rows: minmax(140px, auto);
+        }
+
+        .bento-card {
+            position: relative;
+            padding: 1.75rem;
+            border-radius: 1.25rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(4px);
+        }
+
+        .bento-card:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--border-strong);
+        }
+
+        .bento-revenue {
+            grid-column: span 12;
+        }
+
+        .bento-latency {
+            grid-column: span 6;
+        }
+
+        .bento-years {
+            grid-column: span 6;
+        }
+
+        .bento-clients {
+            grid-column: span 7;
+        }
+
+        .bento-deploy {
+            grid-column: span 5;
+        }
+
+        @media (min-width: 768px) {
+            .bento-revenue {
+                grid-column: span 6;
+                grid-row: span 2;
+            }
+
+            .bento-latency {
+                grid-column: span 3;
+            }
+
+            .bento-years {
+                grid-column: span 3;
+            }
+
+            .bento-clients {
+                grid-column: span 4;
+            }
+
+            .bento-deploy {
+                grid-column: span 2;
+            }
+        }
+
+        .impact-bar {
+            position: relative;
+            height: 4px;
+            background: var(--border-subtle);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .impact-bar-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--text-primary), var(--text-muted));
+            border-radius: 2px;
+        }
+
+        .avatar-stack {
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+            border: 2px solid var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.7rem;
+            color: var(--text-primary);
+            margin-left: -10px;
+        }
+
+        .avatar-circle:first-child {
+            margin-left: 0;
+        }
+
+        .sparkline {
+            width: 100%;
+            height: 60px;
+        }
+
+        .sparkline path {
+            stroke: var(--text-primary);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+        }
+
+        .sparkline path.animated {
+            animation: draw-line 2s ease forwards;
+        }
+
+        @keyframes draw-line {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .sparkline .fill-area {
+            fill: url(#spark-gradient);
+            opacity: 0;
+            transition: opacity 1s ease 1s;
+        }
+
+        .sparkline .fill-area.animated {
+            opacity: 0.3;
         }
 
         #hero-canvas {
@@ -179,15 +514,46 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: var(--glass-bg);
+            border: 1px solid var(--border-subtle);
             backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(4px);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    rgba(255, 255, 255, 0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body[data-theme="platinum"] .glass-card::before {
+            background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    rgba(0, 0, 0, 0.08), transparent 40%);
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card>* {
+            position: relative;
+            z-index: 2;
         }
 
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: var(--glass-bg-hover);
+            border-color: var(--border-strong);
             transform: translateY(-4px);
         }
 
@@ -196,16 +562,36 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #050505;
+            background: var(--scroll-track);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #333;
+            background: var(--scroll-thumb);
             border-radius: 3px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .marquee-track {
+                animation: none !important;
+            }
+
+            .availability-pulse {
+                animation: none !important;
+            }
         }
 
         .section-fade {
@@ -271,6 +657,105 @@
         .nav-visible {
             transform: translateY(0);
         }
+
+        /* Case Studies */
+        .case-study-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(5rem, 12vw, 10rem);
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(to bottom, var(--text-primary), transparent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.07;
+            position: absolute;
+            top: -1rem;
+            right: 1.5rem;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .case-metric-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .case-metric-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-subtle);
+        }
+
+        /* Consulting Philosophy */
+        .philosophy-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--text-primary);
+            opacity: 0.05;
+            transition: opacity 0.3s ease;
+            user-select: none;
+            display: block;
+        }
+
+        .philosophy-step:hover .philosophy-number {
+            opacity: 0.14;
+        }
+
+        /* Testimonials */
+        .testimonial-quote-mark {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8rem;
+            line-height: 0.8;
+            color: var(--text-primary);
+            opacity: 0.06;
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Recognition cards */
+        .recognition-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            border-radius: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .recognition-card:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--border-strong);
+            transform: translateY(-2px);
+        }
+
+        .recognition-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.625rem;
+            background: var(--glass-bg-hover);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.6rem;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
     </style>
     <base target="_blank">
 </head>
@@ -287,8 +772,8 @@
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#about"
                         class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">About</a>
-                    <a href="#experience"
-                        class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">Experience</a>
+                    <a href="#case-studies"
+                        class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">Cases</a>
                     <a href="#skills"
                         class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">Skills</a>
                     <a href="#publications"
@@ -296,7 +781,7 @@
                     <a href="#contact"
                         class="text-xs uppercase tracking-widest text-platinum/60 hover:text-white transition-colors hover-target link-hover">Contact</a>
                 </div>
-                <a href="mailto:shiraguppipavan@gmail.com"
+                <a href="https://linkedin.com/in/pavan-shiraguppi" target="_blank"
                     class="magnetic-btn px-5 py-2 border border-white/20 text-xs uppercase tracking-widest hover:bg-white hover:text-obsidian transition-all hover-target">Let's
                     Talk</a>
             </div>
@@ -306,9 +791,15 @@
     <section id="hero" class="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <canvas id="hero-canvas"></canvas>
         <div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+            <div class="hero-badge opacity-0">
+                <span class="availability-badge">
+                    <span class="availability-pulse"></span>
+                    <span>Available for engagements</span>
+                </span>
+            </div>
             <div class="mb-6 overflow-hidden">
-                <p class="hero-sub text-xs md:text-sm uppercase tracking-[0.3em] text-silver/60 font-light">GenAI
-                    Engineer · MLOps · DevOps · Watsonx SME</p>
+                <p class="hero-sub scramble-text text-xs md:text-sm uppercase tracking-[0.3em] text-silver/60 font-light"
+                    data-target="GenAI Engineer · MLOps · DevOps · Watsonx SME">&nbsp;</p>
             </div>
             <h1
                 class="hero-title font-display text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter leading-none mb-8">
@@ -321,7 +812,7 @@
                     Bridging the gap between AI development and platform operations at scale.
                 </p>
             </div>
-            <div class="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div class="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
                 <a href="#experience"
                     class="magnetic-btn px-8 py-4 bg-white text-obsidian text-sm font-semibold uppercase tracking-widest hover:bg-platinum transition-colors hover-target">View
                     My Work</a>
@@ -329,10 +820,27 @@
                     class="magnetic-btn px-8 py-4 border border-white/20 text-sm font-semibold uppercase tracking-widest hover:border-white/50 transition-colors hover-target">Get
                     In Touch</a>
             </div>
-        </div>
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-            <span class="text-[10px] uppercase tracking-widest">Scroll</span>
-            <div class="w-px h-12 bg-gradient-to-b from-white/50 to-transparent"></div>
+            <div class="hero-marquee opacity-0">
+                <p class="text-[10px] uppercase tracking-[0.3em] text-silver/40 mb-5">Trusted by teams at</p>
+                <div class="marquee-wrap">
+                    <div class="marquee-track">
+                        <span class="marquee-item">IBM</span>
+                        <span class="marquee-item">Turing</span>
+                        <span class="marquee-item">Apple</span>
+                        <span class="marquee-item">Anthropic</span>
+                        <span class="marquee-item">Kushagramati</span>
+                        <span class="marquee-item">HCI Japan</span>
+                        <span class="marquee-item">Ritsumeikan</span>
+                        <span class="marquee-item">IBM</span>
+                        <span class="marquee-item">Turing</span>
+                        <span class="marquee-item">Apple</span>
+                        <span class="marquee-item">Anthropic</span>
+                        <span class="marquee-item">Kushagramati</span>
+                        <span class="marquee-item">HCI Japan</span>
+                        <span class="marquee-item">Ritsumeikan</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -340,7 +848,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-12 gap-16 items-start">
                 <div class="lg:col-span-4 section-fade">
-                    <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">01 — About</span>
+                    <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">01 - About</span>
                     <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight leading-tight">Engineering
                         the<br><span class="text-platinum/30">Future of AI</span></h2>
                 </div>
@@ -354,38 +862,106 @@
                                 class="text-white font-medium">$10M+ in revenue</strong>.</p>
                         <p>My expertise lies in CI/CD pipelines for model deployment, LLM fine-tuning, RAG
                             architectures, and enterprise DevOps practices. I specialize in bridging AI development and
-                            platform operations at scale — from air-gapped on-premise GPU clusters to cloud-native
-                            orchestration on Red Hat OpenShift.</p>
+                            platform operations at scale, spanning air-gapped on-premise GPU clusters all the way to
+                            cloud-native orchestration on Red Hat OpenShift.</p>
                         <p>Beyond code, I'm a <strong class="text-white font-medium">bilingual professional</strong>
                             (English & Japanese N2) with international experience across India and Japan, having
                             engineered robotic automation systems and multi-agent AI workflows.</p>
-                    </div>
-                    <div class="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/10">
-                        <div class="section-fade">
-                            <div class="font-display text-4xl md:text-5xl font-bold text-white counter-value"
-                                data-target="10">0</div>
-                            <div class="text-xs uppercase tracking-widest text-silver/50 mt-2">Million+ Revenue</div>
-                        </div>
-                        <div class="section-fade">
-                            <div class="font-display text-4xl md:text-5xl font-bold text-white counter-value"
-                                data-target="7">0</div>
-                            <div class="text-xs uppercase tracking-widest text-silver/50 mt-2">Years Experience</div>
-                        </div>
-                        <div class="section-fade">
-                            <div class="font-display text-4xl md:text-5xl font-bold text-white">40%</div>
-                            <div class="text-xs uppercase tracking-widest text-silver/50 mt-2">Latency Reduction</div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="relative w-full py-32 px-6 lg:px-12 bg-graphite/30">
+    <section id="impact" class="relative w-full py-32 px-6 lg:px-12 bg-graphite/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">02 - Impact</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight decode-text">Measurable Outcomes
+                </h2>
+            </div>
+            <div class="bento-grid section-fade">
+                <div class="bento-card bento-revenue flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-3">Revenue Impact</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="font-display text-5xl md:text-7xl font-bold counter-value" data-target="10"
+                                data-prefix="$" data-suffix="M+">$0M+</span>
+                        </div>
+                        <p class="text-sm text-silver/60 mt-3">Contributed to AI platform revenue through enterprise
+                            engagements</p>
+                    </div>
+                    <svg class="sparkline mt-6" viewBox="0 0 200 60" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="spark-gradient" x1="0" x2="0" y1="0" y2="1">
+                                <stop offset="0%" stop-color="currentColor" stop-opacity="0.4" />
+                                <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                        <path class="spark-line"
+                            d="M0,50 L25,45 L50,40 L75,35 L100,28 L125,22 L150,15 L175,10 L200,5" />
+                        <path class="fill-area"
+                            d="M0,50 L25,45 L50,40 L75,35 L100,28 L125,22 L150,15 L175,10 L200,5 L200,60 L0,60 Z" />
+                    </svg>
+                </div>
+                <div class="bento-card bento-latency flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-3">Model
+                            Accuracy</span>
+                        <div class="font-display text-4xl md:text-5xl font-bold counter-value" data-target="98"
+                            data-suffix="%">0%</div>
+                        <p class="text-xs text-silver/60 mt-2">Tool-calling accuracy after model training</p>
+                    </div>
+                    <div class="impact-bar mt-4">
+                        <div class="impact-bar-fill" data-width="98"></div>
+                    </div>
+                </div>
+                <div class="bento-card bento-years flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-3">Experience</span>
+                        <div class="font-display text-4xl md:text-5xl font-bold counter-value" data-target="6">0</div>
+                        <p class="text-xs text-silver/60 mt-2">Years across AI, MLOps, DevOps</p>
+                    </div>
+                    <div class="flex items-center gap-1 mt-4">
+                        <span class="w-6 h-1 rounded-full bg-white/60"></span>
+                        <span class="w-6 h-1 rounded-full bg-white/60"></span>
+                        <span class="w-6 h-1 rounded-full bg-white/60"></span>
+                        <span class="w-6 h-1 rounded-full bg-white/40"></span>
+                        <span class="w-6 h-1 rounded-full bg-white/20"></span>
+                    </div>
+                </div>
+                <div class="bento-card bento-clients flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-3">Client
+                            Footprint</span>
+                        <p class="font-display text-2xl font-bold">Enterprise clients across 3 continents</p>
+                    </div>
+                    <div class="avatar-stack mt-4">
+                        <div class="avatar-circle">IB</div>
+                        <div class="avatar-circle">AP</div>
+                        <div class="avatar-circle">AN</div>
+                        <div class="avatar-circle">TU</div>
+                        <div class="avatar-circle">+3</div>
+                    </div>
+                </div>
+                <div class="bento-card bento-deploy flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-3">Deployments</span>
+                        <div class="font-display text-4xl md:text-5xl font-bold counter-value" data-target="50"
+                            data-suffix="+">0+</div>
+                        <p class="text-xs text-silver/60 mt-2">Production ships</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="relative w-full py-32 px-6 lg:px-12">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20 section-fade">
-                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">02 — Experience</span>
-                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Career Trajectory</h2>
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">02 - Experience</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight decode-text">Career Trajectory
+                </h2>
             </div>
             <div class="relative space-y-16 pl-8 md:pl-0">
                 <div class="timeline-line hidden md:block" style="left: 50%;"></div>
@@ -396,7 +972,7 @@
                         <div class="timeline-dot hidden md:block" style="top: 8px;"></div>
                         <div class="glass-card rounded-2xl p-8">
                             <div class="flex items-center justify-between mb-4">
-                                <span class="text-xs uppercase tracking-widest text-silver/50">01/2026 — Present</span>
+                                <span class="text-xs uppercase tracking-widest text-silver/50">01/2026 - Present</span>
                                 <span
                                     class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">Current</span>
                             </div>
@@ -423,7 +999,7 @@
                         <div class="timeline-dot hidden md:block" style="top: 8px; left: auto; right: -4px;"></div>
                         <div class="glass-card rounded-2xl p-8 md:ml-auto">
                             <div class="flex items-center justify-between mb-4 md:flex-row-reverse">
-                                <span class="text-xs uppercase tracking-widest text-silver/50">08/2023 — 01/2026</span>
+                                <span class="text-xs uppercase tracking-widest text-silver/50">08/2023 - 01/2026</span>
                                 <span
                                     class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">IBM</span>
                             </div>
@@ -451,14 +1027,22 @@
                         <div class="timeline-dot hidden md:block" style="top: 8px;"></div>
                         <div class="glass-card rounded-2xl p-8">
                             <div class="flex items-center justify-between mb-4">
-                                <span class="text-xs uppercase tracking-widest text-silver/50">2024 — 2026</span>
+                                <span class="text-xs uppercase tracking-widest text-silver/50">2024 - 2026</span>
                                 <span
                                     class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">Consulting</span>
                             </div>
                             <h3 class="font-display text-2xl font-bold mb-1">AI Consultant</h3>
                             <p class="text-silver/50 text-sm mb-6">Turing · Remote</p>
                             <ul class="space-y-3 text-sm text-silver/70">
-                                <li class="flex items-start gap-3"><span class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>Delivered AI consulting engagements for enterprise clients including Apple and Anthropic</li>
+                                <li class="flex items-start gap-3"><span
+                                        class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>Led a team of 12
+                                    to train models for Apple and Anthropic, achieving 95%+ accuracy; for Apple, trained
+                                    models on agentic tool calling, identifying loopholes and inconsistencies, reaching
+                                    98% tool-calling accuracy post-training</li>
+                                <li class="flex items-start gap-3"><span
+                                        class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>Benchmarked
+                                    trained models in Claude Code to validate tool-call consistency and measure
+                                    real-world performance</li>
                                 <li class="flex items-start gap-3"><span
                                         class="w-1 h-1 rounded-full bg-white/40 mt-2 shrink-0"></span>Advised on LLM
                                     strategy, infrastructure architecture, and production deployment roadmaps</li>
@@ -475,7 +1059,7 @@
                         <div class="timeline-dot hidden md:block" style="top: 8px; left: auto; right: -4px;"></div>
                         <div class="glass-card rounded-2xl p-8 md:ml-auto">
                             <div class="flex items-center justify-between mb-4 md:flex-row-reverse">
-                                <span class="text-xs uppercase tracking-widest text-silver/50">02/2023 — 08/2023</span>
+                                <span class="text-xs uppercase tracking-widest text-silver/50">02/2023 - 08/2023</span>
                                 <span
                                     class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">Advisor</span>
                             </div>
@@ -503,7 +1087,7 @@
                         <div class="timeline-dot hidden md:block" style="top: 8px;"></div>
                         <div class="glass-card rounded-2xl p-8">
                             <div class="flex items-center justify-between mb-4">
-                                <span class="text-xs uppercase tracking-widest text-silver/50">04/2022 — 02/2023</span>
+                                <span class="text-xs uppercase tracking-widest text-silver/50">04/2022 - 02/2023</span>
                                 <span
                                     class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">Japan</span>
                             </div>
@@ -529,7 +1113,7 @@
                         <div class="timeline-dot hidden md:block" style="top: 8px; left: auto; right: -4px;"></div>
                         <div class="glass-card rounded-2xl p-8 md:ml-auto">
                             <div class="flex items-center justify-between mb-4 md:flex-row-reverse">
-                                <span class="text-xs uppercase tracking-widest text-silver/50">12/2020 — 03/2022</span>
+                                <span class="text-xs uppercase tracking-widest text-silver/50">12/2020 - 03/2022</span>
                                 <span
                                     class="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-widest">Japan</span>
                             </div>
@@ -554,11 +1138,320 @@
         </div>
     </section>
 
-    <section id="skills" class="relative w-full py-32 px-6 lg:px-12">
+    <section id="case-studies" class="relative w-full py-32 px-6 lg:px-12 bg-graphite/30">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20 section-fade">
-                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">03 — Expertise</span>
-                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Technical Arsenal</h2>
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">03 - Case Studies</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight decode-text">Defining Engagements
+                </h2>
+            </div>
+            <div class="space-y-12">
+
+                <div class="section-fade grid lg:grid-cols-2 gap-8 items-stretch">
+                    <div class="glass-card rounded-2xl p-10 relative overflow-hidden flex flex-col justify-between"
+                        style="min-height:320px;">
+                        <span class="case-study-number">01</span>
+                        <div class="relative z-10 flex-1 flex flex-col">
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span
+                                    class="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest">IBM
+                                    Watsonx</span>
+                                <span
+                                    class="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest">OpenShift</span>
+                                <span
+                                    class="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest">LLM
+                                    Infra</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-2">Enterprise Watsonx Deployment</h3>
+                            <p class="text-silver/50 text-xs uppercase tracking-widest mb-8">IBM · Financial Services
+                                Client</p>
+
+                            <div class="space-y-3 mb-8">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-[10px] uppercase tracking-widest text-silver/40 w-16">Role</span>
+                                    <span class="text-sm text-silver/80">Platform SME</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-silver/40 w-16">Duration</span>
+                                    <span class="text-sm text-silver/80">18 Months</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="text-[10px] uppercase tracking-widest text-silver/40 w-16">Scope</span>
+                                    <span class="text-sm text-silver/80">200-node GPU cluster</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-auto">
+                                <p class="text-[10px] uppercase tracking-widest text-silver/40 mb-3">Tech Stack</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">IBM watsonx</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">OpenShift</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">Granite</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">GPU</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-10 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-silver/40 mb-1">Challenge</p>
+                                <p class="text-silver/70 text-sm leading-relaxed">Client required a fully air-gapped,
+                                    on-premise LLM platform capable of serving Granite and third-party models across a
+                                    200-node GPU cluster. Zero internet dependency and enterprise-grade high
+                                    availability
+                                    were non-negotiable.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-silver/40 mb-1">Solution</p>
+                                <p class="text-silver/70 text-sm leading-relaxed">Architected full IBM watsonx stack on
+                                    Red Hat OpenShift with offline operator lifecycle management, GPU node pools, and
+                                    mirrored container registries. Deployed end-to-end inference pipelines for 6 model
+                                    families.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-silver/40 mb-1">Outcome</p>
+                                <p class="text-silver/70 text-sm leading-relaxed">Platform delivered in 8 weeks with
+                                    99.9% uptime SLA. Became the reference architecture for 4 subsequent enterprise
+                                    deployments.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-8 pt-6 mt-6 border-t border-white/10">
+                            <div class="case-metric">
+                                <span class="case-metric-value">99.9%</span>
+                                <span class="case-metric-label">Uptime SLA</span>
+                            </div>
+                            <div class="case-metric">
+                                <span class="case-metric-value">8 wks</span>
+                                <span class="case-metric-label">Delivery</span>
+                            </div>
+                            <div class="case-metric">
+                                <span class="case-metric-value">6</span>
+                                <span class="case-metric-label">Model Families</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-fade grid lg:grid-cols-2 gap-8 items-stretch">
+                    <div class="glass-card rounded-2xl p-10 relative overflow-hidden flex flex-col justify-between"
+                        style="min-height:320px;">
+                        <span class="case-study-number">02</span>
+                        <div class="relative z-10 flex-1 flex flex-col">
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span
+                                    class="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest">Model
+                                    Training</span>
+                                <span
+                                    class="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest">Agentic
+                                    AI</span>
+                                <span
+                                    class="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest">Claude
+                                    Code</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-2">Agentic Tool Calling — Model Training &amp;
+                                Benchmarking</h3>
+                            <p class="text-silver/50 text-xs uppercase tracking-widest mb-8">Turing · Apple &amp;
+                                Anthropic Engagement
+                            </p>
+
+                            <div class="space-y-3 mb-8">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-[10px] uppercase tracking-widest text-silver/40 w-16">Role</span>
+                                    <span class="text-sm text-silver/80">Tech Lead</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-silver/40 w-16">Duration</span>
+                                    <span class="text-sm text-silver/80">6 Months</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="text-[10px] uppercase tracking-widest text-silver/40 w-16">Team</span>
+                                    <span class="text-sm text-silver/80">12 engineers</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-auto">
+                                <p class="text-[10px] uppercase tracking-widest text-silver/40 mb-3">Tech Stack</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">Claude Code</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">Anthropic
+                                        SDK</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">PyTorch</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">Benchmarking</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-10 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-silver/40 mb-1">Challenge</p>
+                                <p class="text-silver/70 text-sm leading-relaxed">Apple and Anthropic needed highly
+                                    accurate models for agentic tool calling. Existing models showed loopholes and
+                                    inconsistencies in tool-call execution, leading to unreliable agent behaviour in
+                                    production environments.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-silver/40 mb-1">Solution</p>
+                                <p class="text-silver/70 text-sm leading-relaxed">Led a team of 12 to train models
+                                    specifically for agentic tool calling. Identified and addressed loopholes and
+                                    inconsistencies in tool-call patterns through targeted training. Benchmarked the
+                                    trained models in Claude Code to validate performance and measure real-world
+                                    accuracy.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-silver/40 mb-1">Outcome</p>
+                                <p class="text-silver/70 text-sm leading-relaxed">Achieved 98% accuracy in tool calling
+                                    for Apple post-training, surpassing the 95% target. Models demonstrated consistent,
+                                    reliable agentic behaviour in Claude Code benchmarks with minimal hallucinations or
+                                    call failures.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-8 pt-6 mt-6 border-t border-white/10">
+                            <div class="case-metric">
+                                <span class="case-metric-value">98%</span>
+                                <span class="case-metric-label">Tool-Call Accuracy</span>
+                            </div>
+                            <div class="case-metric">
+                                <span class="case-metric-value">12</span>
+                                <span class="case-metric-label">Team Size</span>
+                            </div>
+                            <div class="case-metric">
+                                <span class="case-metric-value">95%+</span>
+                                <span class="case-metric-label">Target Exceeded</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-fade grid lg:grid-cols-2 gap-8 items-stretch">
+                    <div class="glass-card rounded-2xl p-10 relative overflow-hidden flex flex-col justify-between"
+                        style="min-height:320px;">
+                        <span class="case-study-number">03</span>
+                        <div class="relative z-10 flex-1 flex flex-col">
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span
+                                    class="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest">Robotics</span>
+                                <span
+                                    class="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest">Computer
+                                    Vision</span>
+                                <span
+                                    class="px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest">CI/CD</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-2">RoboCafe Automation System</h3>
+                            <p class="text-silver/50 text-xs uppercase tracking-widest mb-8">HCI Japan · Osaka</p>
+
+                            <div class="space-y-3 mb-8">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-[10px] uppercase tracking-widest text-silver/40 w-16">Role</span>
+                                    <span class="text-sm text-silver/80">Lead Robotics Engineer</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-silver/40 w-16">Duration</span>
+                                    <span class="text-sm text-silver/80">22 Months</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="text-[10px] uppercase tracking-widest text-silver/40 w-16">Team</span>
+                                    <span class="text-sm text-silver/80">4 engineers</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-auto">
+                                <p class="text-[10px] uppercase tracking-widest text-silver/40 mb-3">Tech Stack</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">ROS</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">OpenCV</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">Python</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">GitLab CI</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-xs text-silver/60">MQTT</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-10 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-silver/40 mb-1">Challenge</p>
+                                <p class="text-silver/70 text-sm leading-relaxed">Design a fully autonomous cafe with
+                                    Kawasaki, Yaskawa, and Mitsubishi industrial arms, coordinating object detection,
+                                    drink preparation, and customer handoff without any human intervention.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-silver/40 mb-1">Solution</p>
+                                <p class="text-silver/70 text-sm leading-relaxed">Integrated real-time computer vision
+                                    with inverse kinematics controllers over a pub-sub event bus. Built CI/CD pipelines
+                                    for robotic software delivery, cutting release cycle by 30%.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-silver/40 mb-1">Outcome</p>
+                                <p class="text-silver/70 text-sm leading-relaxed">System deployed at Ritsumeikan
+                                    University and HCI Japan showcase. 2,000+ autonomous orders served. Demonstrated at
+                                    international robotics expo in Osaka.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-8 pt-6 mt-6 border-t border-white/10">
+                            <div class="case-metric">
+                                <span class="case-metric-value">2K+</span>
+                                <span class="case-metric-label">Auto Orders</span>
+                            </div>
+                            <div class="case-metric">
+                                <span class="case-metric-value">30%</span>
+                                <span class="case-metric-label">Release Speedup</span>
+                            </div>
+                            <div class="case-metric">
+                                <span class="case-metric-value">3</span>
+                                <span class="case-metric-label">Robot Arms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="relative w-full py-32 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">04 - Process</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight decode-text">How I Work</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="philosophy-step section-fade group">
+                    <span class="philosophy-number">01</span>
+                    <h3 class="font-display text-2xl font-bold mt-4 mb-3">Discover</h3>
+                    <p class="text-silver/60 text-sm leading-relaxed">Deep-dive into the business problem before
+                        touching tooling. I map stakeholder needs, data realities, and latency constraints to define
+                        what "done" actually means.</p>
+                </div>
+                <div class="philosophy-step section-fade group">
+                    <span class="philosophy-number">02</span>
+                    <h3 class="font-display text-2xl font-bold mt-4 mb-3">Architect</h3>
+                    <p class="text-silver/60 text-sm leading-relaxed">Design for failure from day one. I choose boring
+                        infrastructure where possible: solid vector stores, proven orchestration, observable pipelines.
+                        Innovation comes only where it creates a real competitive edge.</p>
+                </div>
+                <div class="philosophy-step section-fade group">
+                    <span class="philosophy-number">03</span>
+                    <h3 class="font-display text-2xl font-bold mt-4 mb-3">Deliver</h3>
+                    <p class="text-silver/60 text-sm leading-relaxed">Ship to production with evaluation harnesses,
+                        rollback plans, and monitoring dashboards pre-built. A model in prod with no evals is a
+                        liability, and I make sure clients are never left holding one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="relative w-full py-32 px-6 lg:px-12 bg-graphite/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">05 - Expertise</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight decode-text">Technical Arsenal
+                </h2>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="glass-card rounded-2xl p-8 section-fade group">
@@ -743,37 +1636,103 @@
             </div>
             <div class="mt-12 glass-card rounded-2xl p-8 section-fade">
                 <h3 class="font-display text-lg font-semibold mb-6">Languages & Scripting</h3>
-                <div class="flex flex-wrap gap-3">
-                    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
-                        <div class="w-2 h-2 rounded-full bg-white"></div><span
-                            class="text-sm text-silver/80">Python</span>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div
+                        class="group relative overflow-hidden rounded-xl bg-white/5 border border-white/10 p-4 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div class="relative flex items-center gap-3">
+                            <svg class="w-8 h-8 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                            </svg>
+                            <div>
+                                <p class="font-display font-semibold text-sm">Python</p>
+                                <div class="mt-1 h-1 w-16 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full w-[95%] bg-blue-400 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
-                        <div class="w-2 h-2 rounded-full bg-white/60"></div><span
-                            class="text-sm text-silver/80">SQL</span>
+                    <div
+                        class="group relative overflow-hidden rounded-xl bg-white/5 border border-white/10 p-4 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div class="relative flex items-center gap-3">
+                            <svg class="w-8 h-8 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path
+                                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                            </svg>
+                            <div>
+                                <p class="font-display font-semibold text-sm">SQL</p>
+                                <div class="mt-1 h-1 w-16 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full w-[90%] bg-orange-400 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
-                        <div class="w-2 h-2 rounded-full bg-white/60"></div><span
-                            class="text-sm text-silver/80">Bash</span>
+                    <div
+                        class="group relative overflow-hidden rounded-xl bg-white/5 border border-white/10 p-4 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div class="relative flex items-center gap-3">
+                            <svg class="w-8 h-8 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path
+                                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <div>
+                                <p class="font-display font-semibold text-sm">Bash</p>
+                                <div class="mt-1 h-1 w-16 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full w-[85%] bg-green-400 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="group relative overflow-hidden rounded-xl bg-white/5 border border-white/10 p-4 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div class="relative flex items-center gap-3">
+                            <svg class="w-8 h-8 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path
+                                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                            </svg>
+                            <div>
+                                <p class="font-display font-semibold text-sm">React</p>
+                                <div class="mt-1 h-1 w-16 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full w-[75%] bg-cyan-400 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="relative w-full py-32 px-6 lg:px-12 bg-graphite/30">
+    <section id="education" class="relative w-full py-32 px-6 lg:px-12 bg-graphite/30">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20 section-fade">
-                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">04 — Education</span>
-                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Academic Foundation</h2>
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">06 - Education</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight decode-text">Academic Foundation
+                </h2>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass-card rounded-2xl p-8 section-fade group hover:bg-white/[0.04] transition-all">
                     <div class="flex items-start justify-between mb-6">
                         <div
                             class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                            <span class="font-display font-bold text-lg">IMT</span></div>
-                        <span class="text-xs uppercase tracking-widest text-silver/50">2023 — 2024</span>
+                            <span class="font-display font-bold text-lg">IMT</span>
+                        </div>
+                        <span class="text-xs uppercase tracking-widest text-silver/50">2023 - 2024</span>
                     </div>
                     <h3 class="font-display text-2xl font-bold mb-2">MBA</h3>
                     <p class="text-silver/60 text-sm mb-4">Design Thinking and Entrepreneurship</p>
@@ -783,8 +1742,9 @@
                     <div class="flex items-start justify-between mb-6">
                         <div
                             class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                            <span class="font-display font-bold text-lg">MIT</span></div>
-                        <span class="text-xs uppercase tracking-widest text-silver/50">2015 — 2019</span>
+                            <span class="font-display font-bold text-lg">MIT</span>
+                        </div>
+                        <span class="text-xs uppercase tracking-widest text-silver/50">2015 - 2019</span>
                     </div>
                     <h3 class="font-display text-2xl font-bold mb-2">B.Tech</h3>
                     <p class="text-silver/60 text-sm mb-4">Electronics and Instrumentation</p>
@@ -797,15 +1757,17 @@
     <section id="publications" class="relative w-full py-32 px-6 lg:px-12">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20 section-fade">
-                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">05 — Projects</span>
-                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight">Featured Work</h2>
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">07 - Projects</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight decode-text">Featured Work</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-6">
                 <a href="https://youtu.be/cvOc5uoqdBo" target="_blank"
                     class="pub-card glass-card rounded-2xl overflow-hidden section-fade hover-target group">
                     <div class="aspect-video bg-gradient-to-br from-graphite to-charcoal relative overflow-hidden">
+                        <img src="https://img.youtube.com/vi/cvOc5uoqdBo/hqdefault.jpg" alt="YouTube Thumbnail"
+                            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white/10 group-hover:text-white/20 transition-colors"
+                            <svg class="w-16 h-16 text-white/40 group-hover:text-white/70 transition-colors drop-shadow-lg"
                                 fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
@@ -825,6 +1787,8 @@
                 <a href="https://youtu.be/0SNUPvxoKJs" target="_blank"
                     class="pub-card glass-card rounded-2xl overflow-hidden section-fade hover-target group">
                     <div class="aspect-video bg-gradient-to-br from-graphite to-charcoal relative overflow-hidden">
+                        <img src="https://img.youtube.com/vi/0SNUPvxoKJs/hqdefault.jpg" alt="YouTube Thumbnail"
+                            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <svg class="w-16 h-16 text-white/10 group-hover:text-white/20 transition-colors"
                                 fill="currentColor" viewBox="0 0 24 24">
@@ -846,6 +1810,8 @@
                 <a href="https://www.youtube.com/watch?v=_y39o1qxa2Q" target="_blank"
                     class="pub-card glass-card rounded-2xl overflow-hidden section-fade hover-target group">
                     <div class="aspect-video bg-gradient-to-br from-graphite to-charcoal relative overflow-hidden">
+                        <img src="https://img.youtube.com/vi/_y39o1qxa2Q/hqdefault.jpg" alt="YouTube Thumbnail"
+                            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <svg class="w-16 h-16 text-white/10 group-hover:text-white/20 transition-colors"
                                 fill="currentColor" viewBox="0 0 24 24">
@@ -868,41 +1834,143 @@
         </div>
     </section>
 
-    <section class="relative w-full py-24 px-6 lg:px-12 bg-graphite/30">
+    <section id="recognition" class="relative w-full py-20 px-6 lg:px-12 bg-graphite/30">
         <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="section-fade text-center md:text-left">
-                    <div
-                        class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto md:mx-0 mb-4">
-                        <svg class="w-5 h-5 text-silver/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                        </svg>
+            <div class="mb-10 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-2">Certifications &
+                    Recognition</span>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="recognition-card section-fade">
+                    <div class="recognition-icon">DB</div>
+                    <div>
+                        <p class="font-display font-semibold text-sm">Databricks</p>
+                        <p class="text-xs text-silver/50 mt-0.5">Lakehouse Fundamentals</p>
                     </div>
-                    <h4 class="font-display font-semibold mb-1">Databricks</h4>
-                    <p class="text-xs text-silver/50">Lakehouse Fundamentals</p>
                 </div>
-                <div class="section-fade text-center md:text-left">
-                    <div
-                        class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto md:mx-0 mb-4">
-                        <svg class="w-5 h-5 text-silver/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                        </svg>
+                <div class="recognition-card section-fade">
+                    <div class="recognition-icon">AMR</div>
+                    <div>
+                        <p class="font-display font-semibold text-sm">AMR Robot</p>
+                        <p class="text-xs text-silver/50 mt-0.5">Intermediate Level Training</p>
                     </div>
-                    <h4 class="font-display font-semibold mb-1">AMR Robot</h4>
-                    <p class="text-xs text-silver/50">Intermediate Level Training</p>
                 </div>
-                <div class="section-fade text-center md:text-left">
-                    <div
-                        class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto md:mx-0 mb-4">
-                        <svg class="w-5 h-5 text-silver/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                        </svg>
+                <div class="recognition-card section-fade">
+                    <div class="recognition-icon">N2</div>
+                    <div>
+                        <p class="font-display font-semibold text-sm">JLPT N2</p>
+                        <p class="text-xs text-silver/50 mt-0.5">Japanese Language Certified</p>
                     </div>
-                    <h4 class="font-display font-semibold mb-1">Japanese Language</h4>
-                    <p class="text-xs text-silver/50">JLPT N2 Certified</p>
+                </div>
+                <div class="recognition-card section-fade">
+                    <div class="recognition-icon">K8s</div>
+                    <div>
+                        <p class="font-display font-semibold text-sm">Kubernetes & Docker</p>
+                        <p class="text-xs text-silver/50 mt-0.5">IBM Certified</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="relative w-full py-32 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">08 - Testimonials</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight decode-text">From the Field</h2>
+            </div>
+
+            <!-- IBM Engagements -->
+            <div class="mb-4 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/40">IBM Engagements</span>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 mb-16">
+                <div class="glass-card rounded-2xl p-8 section-fade relative">
+                    <span class="testimonial-quote-mark">"</span>
+                    <div class="relative z-10">
+                        <p class="text-silver/70 text-sm leading-relaxed mb-8">"Pavan-san has been actively involved in
+                            validating BYOM and fine-tuning models using generative AI. Within the India team, he has
+                            taken the lead in exploring new technologies and sharing them with his colleagues.
+                            Furthermore, he serves as a bridge between Japan and India, supporting his colleagues not
+                            only from a technical perspective but also by helping us overcome differences in cultural
+                            backgrounds and language barriers to work together toward making our organization even
+                            better. I look forward to seeing him continue to excel in the future."</p>
+                        <div class="flex items-center gap-3 pt-6 border-t border-white/10">
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center font-display font-bold text-sm">
+                                CT</div>
+                            <div>
+                                <p class="font-display font-semibold text-sm">Chie Takeda</p>
+                                <p class="text-xs text-silver/50">Director, AI Lab Japan Office · IBM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-8 section-fade relative">
+                    <span class="testimonial-quote-mark">"</span>
+                    <div class="relative z-10">
+                        <p class="text-silver/70 text-sm leading-relaxed mb-8">"I had the pleasure of working with him
+                            on several projects involving machine learning and large language models. He has a deep
+                            understanding of Japanese clients and their expectations, which is a great strength when
+                            working in global teams. In addition, he is very knowledgeable about modern technologies
+                            such as cloud computing and AI."</p>
+                        <div class="flex items-center gap-3 pt-6 border-t border-white/10">
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center font-display font-bold text-sm">
+                                NI</div>
+                            <div>
+                                <p class="font-display font-semibold text-sm">Naosuke Ito</p>
+                                <p class="text-xs text-silver/50">Technology Engineer · IBM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Independent / Freelance -->
+            <div class="mb-4 section-fade">
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/40">Independent Engagements</span>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-card rounded-2xl p-8 section-fade relative">
+                    <span class="testimonial-quote-mark">"</span>
+                    <div class="relative z-10">
+                        <p class="text-silver/70 text-sm leading-relaxed mb-8">"Mr Pavan is not only a very talented AI
+                            Engineer who can lead development projects using Agentic AI but has excellent communication
+                            skills using Japanese and English. He has experience leading more than 100 MVP projects
+                            utilizing watsonx and IBM Data &amp; AI and Automation products working with Japan team and
+                            Japanese customers. I will recommend him as a leader for Agentic AI development for Japanese
+                            customers."</p>
+                        <div class="flex items-center gap-3 pt-6 border-t border-white/10">
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center font-display font-bold text-sm">
+                                KN</div>
+                            <div>
+                                <p class="font-display font-semibold text-sm">Keisuke Nishikado</p>
+                                <p class="text-xs text-silver/50">Director, Consult Partner · Kyndryl Japan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-8 section-fade relative">
+                    <span class="testimonial-quote-mark">"</span>
+                    <div class="relative z-10">
+                        <p class="text-silver/70 text-sm leading-relaxed mb-8">"Mr. Pavan Shiraguppi not only possesses
+                            outstanding technical skills as an AI engineer, but also has a high level of proficiency in
+                            Japanese. In addition, he has a bright, proactive, and humble personality. During my time at
+                            IBM, I worked with him to promote collaboration between IBM Japan and IBM India. Before he
+                            fully joined the team, collaboration was difficult - after he joined, it became highly
+                            successful and even attracted broader recognition."</p>
+                        <div class="flex items-center gap-3 pt-6 border-t border-white/10">
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center font-display font-bold text-sm">
+                                HN</div>
+                            <div>
+                                <p class="font-display font-semibold text-sm">Hideaki Nonaka</p>
+                                <p class="text-xs text-silver/50">Business Consultant</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -911,7 +1979,7 @@
     <section id="contact" class="relative w-full py-32 px-6 lg:px-12">
         <div class="max-w-4xl mx-auto text-center">
             <div class="section-fade">
-                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">06 — Contact</span>
+                <span class="text-xs uppercase tracking-[0.3em] text-silver/50 block mb-4">09 - Contact</span>
                 <h2 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">Let's
                     Build<br><span class="text-platinum/30">Together</span></h2>
                 <p class="text-silver/60 text-lg max-w-xl mx-auto mb-12 font-light">Open to collaborations, consulting,
@@ -944,6 +2012,9 @@
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Custom cursor
         const cursorDot = document.getElementById('cursor-dot');
         const cursorRing = document.getElementById('cursor-ring');
         let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
@@ -969,92 +2040,278 @@
             cursorRing.style.display = 'none';
             document.body.style.cursor = 'auto';
         }
+
+        // Hero mesh gradient - animated per-pixel liquid metal
         const canvas = document.getElementById('hero-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
-        const particleCount = window.innerWidth < 768 ? 30 : 60;
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.3;
-                this.vy = (Math.random() - 0.5) * 0.3;
-                this.size = Math.random() * 2 + 0.5;
-            }
-            update() {
-                this.x += this.vx; this.y += this.vy;
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(255,255,255,0.15)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+        const STEP = 5; // pixel step for perf
+        let meshRunning = true;
+        let meshWidth = 0, meshHeight = 0;
+        let imageData = null;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            meshWidth = Math.ceil(canvas.width / STEP);
+            meshHeight = Math.ceil(canvas.height / STEP);
         }
-        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-        let frameCount = 0;
-        function animateCanvas() {
-            frameCount++;
-            if (frameCount % 2 === 0) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => { p.update(); p.draw(); });
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 150) {
-                            ctx.strokeStyle = `rgba(255,255,255,${0.05 * (1 - dist / 150)})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.stroke();
-                        }
-                    }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        function renderMesh(t) {
+            if (!meshRunning) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const time = t * 0.0003;
+            for (let y = 0; y < meshHeight; y++) {
+                for (let x = 0; x < meshWidth; x++) {
+                    const nx = x / meshWidth;
+                    const ny = y / meshHeight;
+                    const v = Math.sin(nx * 4 + time) * Math.cos(ny * 3 - time * 0.8)
+                        + Math.sin((nx + ny) * 5 + time * 1.2) * 0.5
+                        + Math.cos(nx * 7 - ny * 2 + time * 0.5) * 0.3;
+                    const shade = 18 + (v + 2) * 6;
+                    const r = Math.floor(shade);
+                    const g = Math.floor(shade * 1.02);
+                    const b = Math.floor(shade * 1.08);
+                    ctx.fillStyle = `rgb(${r},${g},${b})`;
+                    ctx.fillRect(x * STEP, y * STEP, STEP + 1, STEP + 1);
                 }
             }
-            requestAnimationFrame(animateCanvas);
+            requestAnimationFrame(renderMesh);
         }
-        animateCanvas();
-        gsap.to('.hero-sub', { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
+        if (!prefersReducedMotion) requestAnimationFrame(renderMesh);
+
+        // Pause mesh when hero not visible
+        const heroSection = document.getElementById('hero');
+        const heroObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !meshRunning && !prefersReducedMotion) {
+                    meshRunning = true;
+                    requestAnimationFrame(renderMesh);
+                } else if (!entry.isIntersecting) {
+                    meshRunning = false;
+                }
+            });
+        }, { threshold: 0 });
+        heroObserver.observe(heroSection);
+
+        // Text scramble
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}-=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise(res => this.resolve = res);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.chars[Math.floor(Math.random() * this.chars.length)];
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="text-white/40">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+        }
+
+        // Apply scramble to hero sub
+        const heroSub = document.querySelector('.hero-sub');
+        if (heroSub && !prefersReducedMotion) {
+            const scramble = new TextScramble(heroSub);
+            setTimeout(() => scramble.setText(heroSub.dataset.target), 800);
+        } else if (heroSub) {
+            heroSub.textContent = heroSub.dataset.target;
+        }
+
+        // Hero entrance timeline
+        gsap.to('.hero-badge', { opacity: 1, y: 0, duration: 1, delay: 0.2, ease: 'power3.out' });
         gsap.from('.hero-title span span', { y: '100%', duration: 1.2, stagger: 0.15, delay: 0.5, ease: 'power4.out' });
         gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 1, delay: 1, ease: 'power3.out' });
         gsap.from('.hero-cta', { opacity: 0, y: 30, duration: 1, delay: 1.2, ease: 'power3.out' });
-        let lastScroll = 0;
+        gsap.to('.hero-marquee', { opacity: 1, duration: 1, delay: 1.5, ease: 'power3.out' });
+
+        // Nav show/hide
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
             if (currentScroll > 100) { navbar.classList.remove('nav-hidden'); navbar.classList.add('nav-visible'); }
             else { navbar.classList.add('nav-hidden'); navbar.classList.remove('nav-visible'); }
-            lastScroll = currentScroll;
         });
-        gsap.utils.toArray('.section-fade').forEach(elem => {
+
+        // Section fade-ins
+        gsap.utils.toArray('.section-fade:not(.glass-card)').forEach(elem => {
             gsap.to(elem, {
                 scrollTrigger: { trigger: elem, start: 'top 85%', toggleActions: 'play none none none' },
                 opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
             });
         });
-        gsap.utils.toArray('.counter-value').forEach(counter => {
-            const target = parseInt(counter.dataset.target);
-            ScrollTrigger.create({
-                trigger: counter, start: 'top 85%',
-                onEnter: () => { gsap.to(counter, { innerHTML: target, duration: 2, snap: { innerHTML: 1 }, ease: 'power2.out' }); }
+        gsap.utils.toArray('.glass-card.section-fade').forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: { trigger: elem, start: 'top 85%', toggleActions: 'play none none none' },
+                opacity: 1, y: 4, duration: 0.8, ease: 'power3.out'
             });
         });
+
+        // Counter animation - supports prefix/suffix
+        gsap.utils.toArray('.counter-value').forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            const prefix = counter.dataset.prefix || '';
+            const suffix = counter.dataset.suffix || '';
+            const obj = { val: 0 };
+            ScrollTrigger.create({
+                trigger: counter, start: 'top 90%',
+                onEnter: () => {
+                    gsap.to(obj, {
+                        val: target, duration: 2, ease: 'power2.out',
+                        onUpdate: () => {
+                            counter.textContent = prefix + Math.floor(obj.val) + suffix;
+                        }
+                    });
+                }
+            });
+        });
+
+        // Impact bar fill
+        gsap.utils.toArray('.impact-bar-fill').forEach(bar => {
+            const width = bar.dataset.width;
+            ScrollTrigger.create({
+                trigger: bar, start: 'top 90%',
+                onEnter: () => {
+                    gsap.to(bar, { width: width + '%', duration: 1.5, ease: 'power2.out', delay: 0.3 });
+                }
+            });
+        });
+
+        // Sparkline draw
+        const sparkPath = document.querySelector('.spark-line');
+        const fillArea = document.querySelector('.sparkline .fill-area');
+        if (sparkPath) {
+            ScrollTrigger.create({
+                trigger: sparkPath, start: 'top 90%',
+                onEnter: () => {
+                    sparkPath.classList.add('animated');
+                    fillArea.classList.add('animated');
+                }
+            });
+        }
+
+        // Magnetic buttons with glow
         document.querySelectorAll('.magnetic-btn').forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
-                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.02)`;
+                const dist = Math.sqrt(x * x + y * y);
+                const maxDist = Math.sqrt(rect.width * rect.width + rect.height * rect.height) / 2;
+                const intensity = 1 - Math.min(dist / maxDist, 1);
+                btn.style.boxShadow = `0 ${10 + intensity * 20}px ${30 + intensity * 30}px -10px rgba(255,255,255,${0.1 + intensity * 0.15})`;
             });
-            btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0, 0)'; });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0) scale(1)';
+                btn.style.boxShadow = '';
+            });
         });
+
+        // 3D tilt + spotlight for glass & bento cards
+        const tiltCards = document.querySelectorAll('.glass-card, .bento-card');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', mx + 'px');
+                card.style.setProperty('--mouse-y', my + 'px');
+                if (prefersReducedMotion) return;
+                const rx = ((my / rect.height) - 0.5) * -6;
+                const ry = ((mx / rect.width) - 0.5) * 6;
+                card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(4px)';
+            });
+        });
+
+        // Scroll-driven theme phase shift
+        const themeMap = [
+            { id: 'hero', theme: null },
+            { id: 'about', theme: null },
+            { id: 'impact', theme: 'platinum' },
+            { id: 'experience', theme: null },
+            { id: 'case-studies', theme: 'platinum' },
+            { id: 'philosophy', theme: null },
+            { id: 'skills', theme: 'platinum' },
+            { id: 'education', theme: null },
+            { id: 'publications', theme: 'platinum' },
+            { id: 'recognition', theme: null },
+            { id: 'testimonials', theme: 'platinum' },
+            { id: 'contact', theme: null },
+        ];
+        themeMap.forEach(({ id, theme }) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 55%',
+                end: 'bottom 45%',
+                onEnter: () => applyTheme(theme),
+                onEnterBack: () => applyTheme(theme),
+            });
+        });
+        function applyTheme(theme) {
+            if (theme) document.body.setAttribute('data-theme', theme);
+            else document.body.removeAttribute('data-theme');
+        }
+
+        // Scroll-triggered decode on section headings
+        class ScrollDecoder {
+            static apply(el) {
+                const finalText = el.textContent;
+                el.dataset.finalText = finalText;
+                const scrambler = new TextScramble(el);
+                ScrollTrigger.create({
+                    trigger: el, start: 'top 80%',
+                    onEnter: () => scrambler.setText(finalText),
+                });
+            }
+        }
+        if (!prefersReducedMotion) {
+            document.querySelectorAll('.decode-text').forEach(el => ScrollDecoder.apply(el));
+        }
+
+        // Smooth anchor scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
