@@ -503,18 +503,24 @@ kbd { font-family: var(--font-mono); font-size: 10.5px; padding: 2px 6px; border
 @media (max-width: 480px) { .hero__role { font-size: 10.5px; letter-spacing: 0.08em; gap: 4px 8px; } .hero__role span + span::before { margin-right: 8px; } }
 .scope { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: var(--text); color: var(--bg); }
 
-/* ---------- Pointer: precise dot + trailing ring (fine pointers only) ---------- */
-.cursor { position: fixed; left: 0; top: 0; z-index: 2000; pointer-events: none; opacity: 0; transition: opacity 0.3s var(--ease); }
+/* ---------- Pointer: one quiet dot that softly expands over interactive elements ---------- */
+.cursor { position: fixed; left: 0; top: 0; z-index: 2000; pointer-events: none; opacity: 0; transition: opacity 0.25s var(--ease); will-change: transform; }
 .has-cursor .cursor.is-visible { opacity: 1; }
-.cursor__dot, .cursor__ring { position: absolute; left: 0; top: 0; border-radius: 50%; will-change: transform; }
-.cursor__dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--text); transition: width 0.25s var(--ease), height 0.25s var(--ease), margin 0.25s var(--ease), opacity 0.2s; }
-.cursor__ring {
-    width: 30px; height: 30px; margin: -15px 0 0 -15px; border: 1px solid color-mix(in srgb, var(--text) 45%, transparent);
-    transition: width 0.35s var(--ease), height 0.35s var(--ease), margin 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease), opacity 0.2s;
+.cursor__dot {
+    position: absolute; left: 0; top: 0; width: 8px; height: 8px; border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--text);
+    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--bg) 55%, transparent);
+    transition: width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
-.cursor.is-link .cursor__ring { width: 46px; height: 46px; margin: -23px 0 0 -23px; background: color-mix(in srgb, var(--text) 8%, transparent); border-color: color-mix(in srgb, var(--text) 70%, transparent); }
-.cursor.is-link .cursor__dot { width: 4px; height: 4px; margin: -2px 0 0 -2px; }
-.cursor.is-down .cursor__ring { width: 24px; height: 24px; margin: -12px 0 0 -12px; }
+.cursor.is-link .cursor__dot {
+    width: 34px; height: 34px;
+    background: color-mix(in srgb, var(--text) 16%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--text) 30%, transparent), 0 0 0 2px color-mix(in srgb, var(--bg) 25%, transparent);
+    -webkit-backdrop-filter: invert(0.06); backdrop-filter: invert(0.06);
+}
+.cursor.is-down .cursor__dot { width: 6px; height: 6px; }
+.cursor.is-link.is-down .cursor__dot { width: 28px; height: 28px; }
 .cursor.is-text { opacity: 0 !important; }
 @media (hover: hover) and (pointer: fine) {
     .has-cursor, .has-cursor a, .has-cursor button, .has-cursor [role="tab"] { cursor: none; }
@@ -522,5 +528,3 @@ kbd { font-family: var(--font-mono); font-size: 10.5px; padding: 2px 6px; border
 }
 @media not all and (hover: hover) and (pointer: fine) { .cursor { display: none; } }
 @media print { .cursor { display: none !important; } }
-.cursor__dot { box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--bg) 70%, transparent); }
-.cursor__ring { box-shadow: 0 0 0 1px color-mix(in srgb, var(--bg) 35%, transparent), inset 0 0 0 1px color-mix(in srgb, var(--bg) 35%, transparent); }

@@ -146,30 +146,21 @@
         if (shader) shader.play(); else canvas.style.display = 'none';
     }
 
-    /* ---------- Pointer: exact dot, softly trailing ring ---------- */
+    /* ---------- Pointer: one quiet dot, exact tracking ---------- */
     (function () {
         var cur = $('#cursor');
         if (!cur || !finePointer || reduceMotion) { if (cur) cur.style.display = 'none'; return; }
         doc.classList.add('has-cursor');
-        var dot = $('.cursor__dot', cur), ring = $('.cursor__ring', cur);
-        var x = -100, y = -100, rx = -100, ry = -100, raf = null;
-        function loop() {
-            rx += (x - rx) * 0.2; ry += (y - ry) * 0.2;
-            ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0)';
-            raf = (Math.abs(x - rx) > 0.1 || Math.abs(y - ry) > 0.1) ? requestAnimationFrame(loop) : null;
-        }
         window.addEventListener('pointermove', function (e) {
             if (e.pointerType && e.pointerType !== 'mouse') return;
-            x = e.clientX; y = e.clientY;
-            dot.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
-            if (!cur.classList.contains('is-visible')) { rx = x; ry = y; cur.classList.add('is-visible'); }
-            if (!raf) raf = requestAnimationFrame(loop);
+            cur.style.transform = 'translate3d(' + e.clientX + 'px,' + e.clientY + 'px,0)';
+            cur.classList.add('is-visible');
         }, { passive: true });
         document.addEventListener('mouseleave', function () { cur.classList.remove('is-visible'); });
         document.addEventListener('mouseover', function (e) {
-            var t = e.target;
-            cur.classList.toggle('is-text', !!(t.closest && t.closest('input, textarea')));
-            cur.classList.toggle('is-link', !!(t.closest && t.closest('a, button, [role="tab"], label')));
+            var t = e.target.closest ? e.target : e.target.parentElement;
+            cur.classList.toggle('is-text', !!t.closest('input, textarea'));
+            cur.classList.toggle('is-link', !!t.closest('a, button, [role="tab"], label'));
         });
         window.addEventListener('mousedown', function () { cur.classList.add('is-down'); });
         window.addEventListener('mouseup', function () { cur.classList.remove('is-down'); });
