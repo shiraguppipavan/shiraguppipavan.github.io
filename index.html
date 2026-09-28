@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Pavan Shiraguppi | GenAI Platform Engineer · Agentic AI · AWS</title>
     <meta name="description"
-        content="Pavan Shiraguppi — GenAI Platform Engineer and Claude Certified Developer building enterprise agentic AI platforms on AWS. Currently engineering an orchestrator and remote-agent SDLC GenAI product for Woven by Toyota.">
+        content="Pavan Shiraguppi — GenAI Platform Engineer and Claude Certified Developer. I design and run the platforms that take agentic AI from prototype to production for global enterprises, on AWS and on-prem.">
     <meta name="author" content="Pavan Shiraguppi">
-    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#ececeb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#060607">
     <link rel="canonical" href="https://shiraguppipavan.github.io/">
     <meta property="og:title" content="Pavan Shiraguppi | GenAI Platform Engineer">
     <meta property="og:description"
@@ -18,27 +17,25 @@
     <meta property="og:url" content="https://shiraguppipavan.github.io/">
     <meta name="twitter:card" content="summary">
     <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23050505'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-weight='700' font-size='26' fill='%23ededed'%3EPS%3C/text%3E%3C/svg%3E">
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23060607'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-weight='700' font-size='26' fill='%23ededee'%3EPS%3C/text%3E%3C/svg%3E">
 
     <script>
         (function () {
-            var d = document.documentElement;
+            var d = document.documentElement, t = null;
             d.classList.remove('no-js'); d.classList.add('js');
-            var t = null;
             try { t = localStorage.getItem('site-theme'); } catch (e) { }
             if (t === 'platinum') t = 'light';
             if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
             d.setAttribute('data-theme', t);
-            // Safety net: if scripts never initialise, show everything.
-            setTimeout(function () { if (!window.__siteReady) d.classList.add('reveal-all'); }, 4000);
+            setTimeout(function () { if (!window.__siteReady) d.classList.add('reveal-all'); }, 2500);
         })();
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="assets/css/style.css">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/site.css">
 
     <script type="application/ld+json">
     {
@@ -47,10 +44,12 @@
         "name": "Pavan Shiraguppi",
         "url": "https://shiraguppipavan.github.io/",
         "jobTitle": "GenAI Platform Engineer",
+        "email": "mailto:shiraguppipavan@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN" },
         "sameAs": ["https://linkedin.com/in/pavan-shiraguppi"],
         "knowsLanguage": ["English", "Japanese"],
-        "knowsAbout": ["Generative AI", "Agentic AI", "Multi-agent orchestration", "AWS", "Platform engineering", "MLOps", "Red Hat OpenShift", "IBM watsonx", "Claude"],
+        "knowsAbout": ["Generative AI", "Agentic AI", "Multi-agent orchestration", "AWS", "Platform engineering", "LLMOps", "Red Hat OpenShift", "IBM watsonx", "Claude"],
+        "hasCredential": { "@type": "EducationalOccupationalCredential", "name": "Claude Certified Developer", "recognizedBy": { "@type": "Organization", "name": "Anthropic" } },
         "alumniOf": [
             { "@type": "CollegeOrUniversity", "name": "Institute of Management Technology, Ghaziabad" },
             { "@type": "CollegeOrUniversity", "name": "Manipal Institute of Technology" }
@@ -61,722 +60,566 @@
 
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
-
-    <!-- Preloader (first visit per session only) -->
-    <div class="loader" id="loader" hidden aria-hidden="true">
-        <div class="loader__inner">
-            <div class="loader__name"><span>Pavan Shiraguppi</span></div>
-            <div class="loader__bar"><i></i></div>
-            <div class="loader__row"><span>GenAI Platform Engineer</span><span id="loader-count">000</span></div>
-        </div>
-    </div>
-
-    <div class="cursor" id="cursor" aria-hidden="true">
-        <div class="cursor__ring"><span class="cursor__label" id="cursor-label"></span></div>
-        <div class="cursor__dot"></div>
-    </div>
-    <div class="grain" aria-hidden="true"></div>
     <div class="progress" id="progress" aria-hidden="true"></div>
 
     <!-- ============================== NAV ============================== -->
     <header class="nav" id="nav">
         <div class="nav__bar">
-            <a href="#hero" class="nav__logo" data-cursor-hover aria-label="Pavan Shiraguppi, back to top">
-                <span class="nav__logo-mark">PS</span><span>Pavan</span>
+            <a href="#top" class="nav__logo" aria-label="Pavan Shiraguppi, back to top">
+                <span class="nav__mark" aria-hidden="true">PS</span><span>Pavan Shiraguppi</span>
             </a>
-            <nav class="nav__links" id="nav-links" aria-label="Primary">
+            <nav class="nav__links" aria-label="Primary">
                 <span class="nav__pill" id="nav-pill" aria-hidden="true"></span>
-                <a class="nav__link" href="#about" data-section="about">About</a>
-                <a class="nav__link" href="#now" data-section="now">Now</a>
-                <a class="nav__link" href="#experience" data-section="experience">Experience</a>
-                <a class="nav__link" href="#work" data-section="work">Work</a>
-                <a class="nav__link" href="#expertise" data-section="expertise">Expertise</a>
-                <a class="nav__link" href="#contact" data-section="contact">Contact</a>
+                <a class="nav__link" href="#about" data-for="about">About</a>
+                <a class="nav__link" href="#services" data-for="services now">Services</a>
+                <a class="nav__link" href="#work" data-for="impact work testimonials">Work</a>
+                <a class="nav__link" href="#experience" data-for="experience process">Experience</a>
+                <a class="nav__link" href="#expertise" data-for="expertise credentials projects">Expertise</a>
+                <a class="nav__link" href="#contact" data-for="contact">Contact</a>
             </nav>
             <div class="nav__actions">
-                <button class="kbd-btn" id="cmdk-open" type="button" aria-label="Open command menu" data-cursor-hover>
-                    <span>Search</span><kbd id="cmdk-kbd">⌘K</kbd>
+                <button class="kbd-btn" id="cmdk-open" type="button" aria-label="Open quick navigation">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+                    <kbd id="cmdk-kbd">⌘K</kbd>
                 </button>
-                <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme" data-cursor-hover>
-                    <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
-                    <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5" /><path d="M12 1.5v2.5M12 20v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M1.5 12H4M20 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8" /></svg>
+                <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch between light and dark theme">
+                    <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+                    <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5" /><path d="M12 1.5v2.5M12 20v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M1.5 12H4M20 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8" /></svg>
                 </button>
-                <a class="btn btn--primary btn--sm nav__cta" href="#contact" data-cursor-hover>Let's talk</a>
+                <a class="btn btn--primary btn--sm nav__cta" href="#contact">Get in touch</a>
                 <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-                    <span class="menu-btn__lines"><span></span><span></span></span>
+                    <span class="menu-btn__lines" aria-hidden="true"><span></span><span></span></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <div class="mobile-menu" id="mobile-menu" aria-label="Menu">
-        <ul class="mobile-menu__links">
-            <li><a href="#about"><small>01</small>About</a></li>
-            <li><a href="#now"><small>02</small>Now</a></li>
-            <li><a href="#experience"><small>03</small>Experience</a></li>
-            <li><a href="#work"><small>04</small>Work</a></li>
-            <li><a href="#expertise"><small>05</small>Expertise</a></li>
-            <li><a href="#contact"><small>06</small>Contact</a></li>
-        </ul>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <nav aria-label="Mobile">
+            <a class="mm-link" href="#about">About <span>→</span></a>
+            <a class="mm-link" href="#services">Services <span>→</span></a>
+            <a class="mm-link" href="#work">Case studies <span>→</span></a>
+            <a class="mm-link" href="#experience">Experience <span>→</span></a>
+            <a class="mm-link" href="#expertise">Expertise <span>→</span></a>
+            <a class="mm-link" href="#contact">Contact <span>→</span></a>
+        </nav>
         <div class="mobile-menu__foot">
-            <a class="btn btn--primary btn--sm" href="mailto:shiraguppipavan@gmail.com">Email</a>
-            <a class="btn btn--sm" href="https://linkedin.com/in/pavan-shiraguppi" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn btn--sm" href="resume.pdf" download>Download CV</a>
+            <a class="btn btn--primary btn--block" href="mailto:shiraguppipavan@gmail.com">Email me</a>
+            <a class="btn btn--block" href="resume.pdf" download>Download CV</a>
         </div>
     </div>
 
     <main id="main">
         <!-- ============================== HERO ============================== -->
-        <section class="hero" id="hero" aria-label="Introduction">
-            <div class="hero__fallback" aria-hidden="true"></div>
+        <section class="hero" id="top" aria-label="Introduction">
+            <div class="hero__bg" aria-hidden="true"></div>
             <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
-            <div class="container" style="display:flex;flex-direction:column;flex:1;">
-                <div class="hero__top hero-in">
-                    <span class="status"><span class="pulse" aria-hidden="true"></span><span>Now · <b>GenAI Platform Engineering</b> for Woven by Toyota</span></span>
-                    <div class="hero__meta" aria-label="Location and local time">
-                        <span>Bengaluru, IN</span>
-                        <span><b id="clock">--:--</b> IST</span>
-                    </div>
-                </div>
-
-                <p class="hero__role hero-in" id="hero-role"
-                    data-text="GenAI Platform Engineer · Agentic AI · AWS · Claude Certified">GenAI Platform Engineer · Agentic AI · AWS · Claude Certified</p>
-
-                <h1 class="hero__title" id="hero-title" aria-label="Pavan Shiraguppi">
-                    <span class="row row--1" aria-hidden="true"><span>Pavan</span></span>
-                    <span class="row row--2" aria-hidden="true"><span>Shiraguppi</span></span>
-                </h1>
-
-                <div class="hero__bottom hero-in">
-                    <p class="hero__desc">I build the platforms that let enterprises run agentic AI in production &mdash;
-                        multi-agent orchestration, secure cloud infrastructure on AWS, and the governance that
-                        Fortune-scale organizations demand.</p>
+            <div class="container">
+                <div class="hero__grid">
                     <div>
+                        <span class="status"><span class="pulse" aria-hidden="true"></span><span>Currently <b>GenAI platform engineering</b> for Woven by Toyota</span></span>
+                        <h1 class="hero__name"><span>Pavan</span><span class="sur">Shiraguppi</span></h1>
+                        <p class="hero__role"><span>GenAI Platform Engineer</span><span>Agentic AI</span><span>AWS</span></p>
+                        <p class="hero__lead">I design and run the platforms that take agentic AI from prototype to
+                            production, with <strong>multi-agent orchestration, secure AWS infrastructure and the
+                                governance global enterprises require.</strong></p>
                         <div class="hero__cta">
-                            <a class="btn btn--primary btn--lg magnetic" href="#work" data-cursor-hover>View my work
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
-                            <a class="btn btn--lg magnetic" href="resume.pdf" download data-cursor-hover>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16" /></svg>
-                                Download CV</a>
+                            <a class="btn btn--primary" href="#contact">Start a conversation
+                                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
+                            <a class="btn" href="#work">View case studies</a>
                         </div>
                     </div>
+
+                    <aside class="glance" aria-label="At a glance">
+                        <div class="glance__head"><span class="label">At a glance</span><span class="label">Bengaluru · IST</span></div>
+                        <div class="glance__now">
+                            <span class="label">Current engagement</span>
+                            <b>Woven by Toyota</b>
+                            <span>Platform engineer · Agentic SDLC product on AWS</span>
+                        </div>
+                        <div class="glance__stats">
+                            <div class="glance__stat"><b>$10M+</b><span>GenAI revenue contributed</span></div>
+                            <div class="glance__stat"><b>98%</b><span>Tool-call accuracy shipped</span></div>
+                            <div class="glance__stat"><b>6 yrs</b><span>AI, MLOps &amp; DevOps</span></div>
+                        </div>
+                        <ul class="glance__list">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6" /><path d="m9 14.5-1.5 7L12 19l4.5 2.5-1.5-7" /></svg>Claude Certified Developer · Anthropic</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4.25 4.25 0 0 1-.5 8.5H7z" /></svg>AWS, OpenShift &amp; air-gapped platforms</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg>English · Japanese (JLPT N2)</li>
+                        </ul>
+                    </aside>
                 </div>
-                <div class="scroll-cue hero-in" aria-hidden="true"><i></i>Scroll to explore</div>
+
+                <div class="clients" aria-label="Organizations I have delivered for">
+                    <span class="label">Delivered for</span>
+                    <span class="clients__name">Woven by Toyota</span>
+                    <span class="clients__name">IBM</span>
+                    <span class="clients__name">Apple</span>
+                    <span class="clients__name">Anthropic</span>
+                    <span class="clients__name">Turing</span>
+                    <span class="clients__name">HCI Japan</span>
+                </div>
             </div>
         </section>
-
-        <!-- ============================== LOGOS ============================== -->
-        <div class="logos" aria-label="Organizations I have delivered for">
-            <p class="logos__label">Delivered for teams at</p>
-            <div class="marquee">
-                <div class="marquee__track">
-                    <span class="logo-word logo-word--hl">Woven by Toyota</span>
-                    <span class="logo-word">IBM</span>
-                    <span class="logo-word">Apple</span>
-                    <span class="logo-word">Anthropic</span>
-                    <span class="logo-word">Turing</span>
-                    <span class="logo-word">Kushagramati</span>
-                    <span class="logo-word">HCI Japan</span>
-                    <span class="logo-word">Ritsumeikan</span>
-                </div>
-                <div class="marquee__track" aria-hidden="true">
-                    <span class="logo-word logo-word--hl">Woven by Toyota</span>
-                    <span class="logo-word">IBM</span>
-                    <span class="logo-word">Apple</span>
-                    <span class="logo-word">Anthropic</span>
-                    <span class="logo-word">Turing</span>
-                    <span class="logo-word">Kushagramati</span>
-                    <span class="logo-word">HCI Japan</span>
-                    <span class="logo-word">Ritsumeikan</span>
-                </div>
-            </div>
-        </div>
 
         <!-- ============================== ABOUT ============================== -->
         <section class="section" id="about" aria-labelledby="about-title">
-            <div class="container">
-                <span class="eyebrow reveal">01 — About</span>
-                <h2 class="statement" id="about-title" style="margin-top:28px;" data-words>
-                    I sit where generative AI meets cloud infrastructure, turning agentic prototypes into governed,
-                    production-grade platforms for global enterprises.
-                </h2>
-
-                <div class="about-grid">
-                    <aside class="portrait-card card reveal" aria-label="Quick facts">
-                        <div class="portrait-card__mono" aria-hidden="true">PS</div>
-                        <dl class="facts">
-                            <div><dt>Role</dt><dd>GenAI Platform Engineer</dd></div>
-                            <div><dt>Now</dt><dd>Woven by Toyota</dd></div>
-                            <div><dt>Certified</dt><dd>Claude Developer</dd></div>
-                            <div><dt>Based</dt><dd>Bengaluru, India</dd></div>
-                            <div><dt>Languages</dt><dd>English · Japanese N2</dd></div>
-                        </dl>
-                    </aside>
-                    <div>
-                        <div class="about-copy reveal">
-                            <p>Today I'm the <strong>platform engineer on a GenAI SDLC product for Woven by
-                                    Toyota</strong>, an agentic system in which a central orchestrator coordinates
-                                specialised remote agents across the software development lifecycle. I own the
-                                platform layer: AWS cloud architecture, agent runtime and deployment, CI/CD, security,
-                                and observability.</p>
-                            <p>Before that, as a <strong>Watsonx Platform SME at IBM</strong>, I delivered air-gapped
-                                LLM platforms on Red Hat OpenShift and GenAI engagements contributing to
-                                <strong>$10M+ in revenue</strong>, and led a 12-person team training agentic
-                                tool-calling models for Apple and Anthropic. I'm a <strong>Claude Certified
-                                    Developer</strong> and a bilingual professional who has delivered across India and
-                                Japan.</p>
-                        </div>
-                        <div class="pillars">
-                            <div class="pillar card reveal">
-                                <div class="pillar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5" /><circle cx="5" cy="19" r="2.5" /><circle cx="19" cy="19" r="2.5" /><path d="M12 7.5v4M12 11.5 6.5 17M12 11.5l5.5 5.5" /></svg></div>
-                                <h3>Agentic AI Platforms</h3>
-                                <p>Orchestrator and remote-agent architectures, tool calling, evaluation, and guardrails.</p>
-                            </div>
-                            <div class="pillar card reveal">
-                                <div class="pillar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4.25 4.25 0 0 1-.5 8.5H7z" /></svg></div>
-                                <h3>AWS &amp; Cloud Engineering</h3>
-                                <p>Secure, scalable, cost-aware infrastructure as code, from cloud-native to air-gapped on-prem.</p>
-                            </div>
-                            <div class="pillar card reveal">
-                                <div class="pillar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg></div>
-                                <h3>Enterprise Delivery</h3>
-                                <p>Executive-ready communication across US, Japan, and India, from roadmap to run-book.</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container about">
+                <div class="reveal">
+                    <span class="eyebrow">About</span>
+                    <h2 class="statement" id="about-title">I sit where generative AI meets cloud infrastructure, <em>turning
+                            agentic prototypes into governed, production-grade platforms.</em></h2>
+                    <dl class="facts">
+                        <div><dt>Role</dt><dd>GenAI Platform Engineer</dd></div>
+                        <div><dt>Current</dt><dd>Woven by Toyota</dd></div>
+                        <div><dt>Certified</dt><dd>Claude Developer</dd></div>
+                        <div><dt>Languages</dt><dd>English · Japanese N2</dd></div>
+                    </dl>
+                </div>
+                <div class="about__copy reveal">
+                    <p>Today I'm the <strong>platform engineer on a GenAI SDLC product for Woven by Toyota</strong>, an
+                        agentic system in which a central orchestrator coordinates specialised remote agents across the
+                        software development lifecycle. I own the platform layer: AWS cloud architecture, agent runtime
+                        and deployment, CI/CD, security, and observability.</p>
+                    <p>Before that, as a <strong>Watsonx Platform SME at IBM</strong>, I delivered air-gapped LLM
+                        platforms on Red Hat OpenShift and GenAI engagements contributing to <strong>$10M+ in
+                            revenue</strong>, and led a 12-person team training agentic tool-calling models for Apple
+                        and Anthropic.</p>
+                    <p>I started in industrial robotics in Osaka, which shaped how I build: systems have to work in the
+                        real world, every day. As a bilingual engineer I've spent years bridging teams and clients
+                        across Japan, India, and the US.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ============================== NOW BUILDING ============================== -->
-        <section class="section section--alt" id="now" aria-labelledby="now-title">
+        <!-- ============================== SERVICES ============================== -->
+        <section class="section section--alt" id="services" aria-labelledby="services-title">
             <div class="container">
-                <div class="now">
-                    <div class="now__copy">
-                        <span class="eyebrow reveal">02 — Now building</span>
-                        <h2 class="h-display split" id="now-title">Agentic SDLC <span class="dim">platform</span></h2>
-                        <p class="lede reveal">For Woven by Toyota, a central orchestrator plans work and delegates
-                            it to specialised remote agents across the software lifecycle. I engineer the platform
-                            they all run on.</p>
-                        <ul class="now__list reveal">
-                            <li>AWS cloud foundation: agent runtime, networking, identity &amp; access</li>
-                            <li>Infrastructure as code, CI/CD, and release automation for every agent</li>
-                            <li>Observability and security guardrails so agents scale with enterprise demand</li>
-                        </ul>
-                        <div class="tagrow reveal">
-                            <span class="tag">Platform Engineer</span>
-                            <span class="tag">AWS</span>
-                            <span class="tag">Multi-agent</span>
-                            <span class="tag">Ongoing</span>
+                <div class="section-head section-head--split">
+                    <div class="reveal">
+                        <span class="eyebrow">Services</span>
+                        <h2 class="h2" id="services-title">How I help <span class="dim">enterprises</span></h2>
+                    </div>
+                    <p class="lede reveal">Four areas where I take ownership end to end, from the first architecture
+                        review to a platform running in production.</p>
+                </div>
+                <div class="services">
+                    <article class="service card card--hover card--spot reveal">
+                        <div class="service__top">
+                            <span class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5" /><circle cx="5" cy="19" r="2.5" /><circle cx="19" cy="19" r="2.5" /><path d="M12 7.5v4M12 11.5 6.5 17M12 11.5l5.5 5.5" /></svg></span>
+                            <span class="service__n">01</span>
+                        </div>
+                        <h3>Agentic AI platform architecture</h3>
+                        <p>Orchestrator and remote-agent systems designed for enterprise scale, with reliable tool
+                            calling, evaluation, guardrails, and a clear path to production.</p>
+                        <div class="service__out"><span class="chip">Multi-agent design</span><span class="chip">Tool-calling reliability</span><span class="chip">Evaluation</span></div>
+                    </article>
+                    <article class="service card card--hover card--spot reveal">
+                        <div class="service__top">
+                            <span class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4.25 4.25 0 0 1-.5 8.5H7z" /></svg></span>
+                            <span class="service__n">02</span>
+                        </div>
+                        <h3>GenAI platform engineering on AWS</h3>
+                        <p>Secure, cloud-native foundations for GenAI products: agent runtime, networking, identity and
+                            access, infrastructure as code, and CI/CD that lets teams ship safely.</p>
+                        <div class="service__out"><span class="chip">AWS</span><span class="chip">Infrastructure as code</span><span class="chip">CI/CD</span></div>
+                    </article>
+                    <article class="service card card--hover card--spot reveal">
+                        <div class="service__top">
+                            <span class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg></span>
+                            <span class="service__n">03</span>
+                        </div>
+                        <h3>Private &amp; regulated LLM infrastructure</h3>
+                        <p>Air-gapped, on-premise LLM platforms on Red Hat OpenShift and GPU clusters for organizations
+                            whose data cannot leave their environment.</p>
+                        <div class="service__out"><span class="chip">Air-gapped</span><span class="chip">OpenShift</span><span class="chip">GPU inference</span></div>
+                    </article>
+                    <article class="service card card--hover card--spot reveal">
+                        <div class="service__top">
+                            <span class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18" /><path d="m7 15 4-4 3 3 5-6" /></svg></span>
+                            <span class="service__n">04</span>
+                        </div>
+                        <h3>LLMOps, evaluation &amp; governance</h3>
+                        <p>Evaluation harnesses, observability, and governance frameworks that keep AI in production
+                            measurable, safe, and auditable as usage grows.</p>
+                        <div class="service__out"><span class="chip">Evaluation</span><span class="chip">Observability</span><span class="chip">Governance</span></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== NOW ============================== -->
+        <section class="section" id="now" aria-labelledby="now-title">
+            <div class="container now">
+                <div class="reveal">
+                    <span class="eyebrow">Current engagement</span>
+                    <h2 class="h2" id="now-title">Agentic SDLC platform <span class="dim">for Woven by Toyota</span></h2>
+                    <p class="lede" style="margin-top:20px;">A central orchestrator plans work and delegates it to
+                        specialised remote agents across the software lifecycle. I engineer the platform they all run on.</p>
+                    <ul class="ticks-list">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>AWS cloud foundation: agent runtime, networking, identity &amp; access</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>Infrastructure as code, CI/CD, and release automation for every agent</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>Observability and security guardrails so agents scale with enterprise demand</li>
+                    </ul>
+                    <div class="tagrow"><span class="tag">Platform Engineer</span><span class="tag">AWS</span><span class="tag">Multi-agent</span><span class="tag">Ongoing</span></div>
+                </div>
+
+                <figure class="arch card reveal" id="arch" aria-label="Illustrative diagram: engineering teams send requests to an orchestrator, which delegates to five remote agents running on an AWS platform layer">
+                    <div class="arch__head"><span class="label">System overview</span><span class="label">Illustrative</span></div>
+                    <div class="node">
+                        <span class="node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3" /><path d="M3 20a6 6 0 0 1 12 0M16 4a3 3 0 0 1 0 6M21 20a6 6 0 0 0-4-5.6" /></svg></span>
+                        <span><span class="node__t">Engineering teams</span><span class="node__s">Requests across the SDLC</span></span>
+                    </div>
+                    <div class="wire" aria-hidden="true"></div>
+                    <div class="node node--orch">
+                        <span class="node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" /></svg></span>
+                        <span><span class="node__t">Orchestrator</span><span class="node__s">Plans, routes, and aggregates results</span></span>
+                    </div>
+                    <div class="wire" aria-hidden="true"></div>
+                    <div class="agents">
+                        <div class="agents__label"><span class="label">Remote agents</span></div>
+                        <div class="agents__grid" id="agents">
+                            <div class="agent"><i></i><b>Plan</b>requirements</div>
+                            <div class="agent"><i></i><b>Build</b>code</div>
+                            <div class="agent"><i></i><b>Review</b>quality</div>
+                            <div class="agent"><i></i><b>Test</b>validation</div>
+                            <div class="agent"><i></i><b>Release</b>delivery</div>
+                        </div>
+                        <div class="platform">
+                            <span class="platform__t">AWS platform layer <span class="platform__own">My scope</span></span>
+                            <span class="platform__chips"><span>Runtime</span><span>IAM &amp; VPC</span><span>IaC</span><span>CI/CD</span><span>Observability</span></span>
                         </div>
                     </div>
-
-                    <figure class="arch card reveal" id="arch" aria-label="Illustrative diagram: an orchestrator delegating tasks to remote agents on an AWS platform layer">
-                        <div class="arch__head"><span>system.overview</span><span class="arch__dots"><i></i><i></i><i></i></span></div>
-
-                        <div class="node">
-                            <span class="node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3" /><path d="M3 20a6 6 0 0 1 12 0M16 4a3 3 0 0 1 0 6M21 20a6 6 0 0 0-4-5.6" /></svg></span>
-                            <span><span class="node__t">Engineering teams</span><br><span class="node__s">Requests across the SDLC</span></span>
-                        </div>
-                        <div class="wire" aria-hidden="true"></div>
-                        <div class="node node--orch">
-                            <span class="node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" /></svg></span>
-                            <span><span class="node__t">Orchestrator</span><br><span class="node__s">Plans, routes, and aggregates results</span></span>
-                        </div>
-                        <div class="wire" aria-hidden="true"></div>
-                        <div class="agents">
-                            <div class="agents__label"><span>Remote agents</span><span>illustrative</span></div>
-                            <div class="agents__grid" id="agents">
-                                <div class="agent"><i></i><b>Plan</b>requirements</div>
-                                <div class="agent"><i></i><b>Build</b>code</div>
-                                <div class="agent"><i></i><b>Review</b>quality</div>
-                                <div class="agent"><i></i><b>Test</b>validation</div>
-                                <div class="agent"><i></i><b>Release</b>delivery</div>
-                            </div>
-                            <div class="platform">
-                                <span class="platform__t">AWS platform layer <span class="platform__owner">My scope</span></span>
-                                <span class="platform__chips"><span>Runtime</span><span>IAM &amp; VPC</span><span>IaC</span><span>CI/CD</span><span>Observability</span></span>
-                            </div>
-                        </div>
-                        <div class="arch__log" aria-hidden="true"><b>●</b><span id="arch-log">orchestrator → plan-agent · task dispatched</span></div>
-                        <figcaption class="arch__note">Illustrative view. Product specifics are confidential.</figcaption>
-                    </figure>
-                </div>
+                    <figcaption class="arch__foot"><span class="arch__log" aria-hidden="true"><b>●</b><span id="arch-log">orchestrator → plan-agent</span></span><span>Product specifics are confidential.</span></figcaption>
+                </figure>
             </div>
         </section>
 
         <!-- ============================== IMPACT ============================== -->
-        <section class="section" id="impact" aria-labelledby="impact-title">
+        <section class="section section--alt" id="impact" aria-labelledby="impact-title">
             <div class="container">
                 <div class="section-head section-head--split">
-                    <div>
-                        <span class="eyebrow reveal">03 — Impact</span>
-                        <h2 class="h-display split" id="impact-title" style="margin-top:20px;">Measurable <span class="dim">outcomes</span></h2>
+                    <div class="reveal">
+                        <span class="eyebrow">Impact</span>
+                        <h2 class="h2" id="impact-title">Outcomes, <span class="dim">not demos</span></h2>
                     </div>
-                    <p class="lede reveal">Numbers from production engagements, not demos: revenue influenced,
-                        accuracy shipped, and platforms kept running.</p>
+                    <p class="lede reveal">Results from production engagements: revenue influenced, accuracy shipped,
+                        and platforms kept running.</p>
                 </div>
-
-                <div class="bento">
-                    <div class="card b-rev reveal">
-                        <div>
-                            <span class="k-label">Revenue impact</span>
-                            <div class="k-value" style="margin-top:14px;"><span class="count" data-to="10" data-prefix="$" data-suffix="M+">$10M+</span></div>
-                            <p class="k-sub">Contributed to AI platform revenue through enterprise engagements</p>
-                        </div>
-                        <svg class="spark" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true">
-                            <defs><linearGradient id="sparkGrad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-opacity="0.5" /><stop offset="1" stop-opacity="0" /></linearGradient></defs>
-                            <path class="a" d="M0,56 C40,55 70,50 100,40 C130,30 160,18 200,3 L200,60 L0,60 Z" />
-                            <path class="l" id="spark-line" d="M0,56 C40,55 70,50 100,40 C130,30 160,18 200,3" />
-                        </svg>
-                    </div>
-                    <div class="card b-acc reveal">
-                        <div>
-                            <span class="k-label">Model accuracy</span>
-                            <div class="k-value" style="margin-top:14px;"><span class="count" data-to="98" data-suffix="%">98%</span></div>
-                            <p class="k-sub">Tool-calling accuracy after model training</p>
-                        </div>
-                        <div class="meter"><i style="--w:98%"></i></div>
-                    </div>
-                    <div class="card b-yrs reveal">
-                        <div>
-                            <span class="k-label">Experience</span>
-                            <div class="k-value" style="margin-top:14px;"><span class="count" data-to="6">6</span></div>
-                            <p class="k-sub">Years across AI, MLOps, DevOps</p>
-                        </div>
-                        <div class="ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                    </div>
-                    <div class="card b-cli reveal">
-                        <div>
-                            <span class="k-label">Client footprint</span>
-                            <h3>Enterprise clients across 3 continents</h3>
-                        </div>
-                        <div class="avatars" aria-hidden="true"><span>WT</span><span>IB</span><span>AP</span><span>AN</span><span>TU</span><span>+3</span></div>
-                    </div>
-                    <div class="card b-dep reveal">
-                        <div>
-                            <span class="k-label">Deployments</span>
-                            <div class="k-value" style="margin-top:14px;"><span class="count" data-to="50" data-suffix="+">50+</span></div>
-                            <p class="k-sub">Production ships</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================== VELOCITY BAND ============================== -->
-        <div class="band" aria-hidden="true">
-            <div class="band__row" data-dir="1">
-                <span class="band__item">Agentic AI <span class="star">✦</span></span>
-                <span class="band__item o">AWS Cloud <span class="star">✦</span></span>
-                <span class="band__item">Platform Engineering <span class="star">✦</span></span>
-                <span class="band__item o">LLMOps <span class="star">✦</span></span>
-            </div>
-            <div class="band__row" data-dir="-1">
-                <span class="band__item o">Orchestrators <span class="star">✦</span></span>
-                <span class="band__item">Remote Agents <span class="star">✦</span></span>
-                <span class="band__item o">Claude Certified <span class="star">✦</span></span>
-                <span class="band__item">Watsonx <span class="star">✦</span></span>
-            </div>
-        </div>
-
-        <!-- ============================== EXPERIENCE ============================== -->
-        <section class="section" id="experience" aria-labelledby="xp-title">
-            <div class="container">
-                <div class="xp">
-                    <div class="xp__side">
-                        <span class="eyebrow reveal">04 — Experience</span>
-                        <h2 class="h-display split" id="xp-title" style="margin-top:20px;">Career <span class="dim">trajectory</span></h2>
-                        <p class="lede reveal" style="margin-top:20px;">From industrial robotics in Osaka to enterprise
-                            GenAI platforms: one through-line of shipping AI that works in production.</p>
-                        <div style="margin-top:28px;" class="reveal">
-                            <a class="btn btn--sm" href="resume.pdf" download data-cursor-hover>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16" /></svg>
-                                Full CV</a>
-                        </div>
-                    </div>
-
-                    <div class="xp__list" id="xp-list">
-                        <span class="xp__rail" aria-hidden="true"><i id="xp-rail"></i></span>
-                        <ol>
-                            <li class="job job--current reveal">
-                                <span class="job__dot" aria-hidden="true"></span>
-                                <div class="job__head"><h3 class="job__title">GenAI Platform Engineer</h3><span class="job__badge">Current</span></div>
-                                <p class="job__org">Woven by Toyota (Client Engagement) · Agentic SDLC Product</p>
-                                <ul class="job__pts">
-                                    <li>Platform engineer for a GenAI SDLC product built on an orchestrator that delegates work to specialised remote agents</li>
-                                    <li>Own the AWS cloud foundation: agent runtime, networking, identity &amp; access, and infrastructure as code</li>
-                                    <li>Build CI/CD, observability, and security guardrails so agents ship safely and scale with enterprise demand</li>
-                                </ul>
-                            </li>
-                            <li class="job reveal">
-                                <span class="job__dot" aria-hidden="true"></span>
-                                <div class="job__head"><h3 class="job__title">Watsonx Platform SME</h3><span class="job__badge">IBM</span></div>
-                                <p class="job__org">IBM India Pvt Ltd · Bengaluru, India</p>
-                                <ul class="job__pts">
-                                    <li>Leading secure on-premise deployments of full IBM watsonx stack (.ai, .data, Orchestrate)</li>
-                                    <li>Managing end-to-end deployment on Red Hat OpenShift with operator lifecycle &amp; GPU node pools</li>
-                                    <li>Architecting scalable air-gapped inference clusters for Granite &amp; third-party LLMs</li>
-                                </ul>
-                            </li>
-                            <li class="job reveal">
-                                <span class="job__dot" aria-hidden="true"></span>
-                                <div class="job__head"><h3 class="job__title">Generative AI Engineer</h3><span class="job__badge">IBM</span></div>
-                                <p class="job__org">IBM India Pvt Ltd · Bengaluru, India</p>
-                                <ul class="job__pts">
-                                    <li>Spearheaded high-impact GenAI engagements contributing to $10M+ revenue</li>
-                                    <li>Fine-tuned Llama, Granite, and GPT variants; reduced token latency by 40%</li>
-                                    <li>Built RAG systems with ChromaDB &amp; Pinecone; AI agents with Watsonx Orchestrate &amp; LangChain</li>
-                                </ul>
-                            </li>
-                            <li class="job reveal">
-                                <span class="job__dot" aria-hidden="true"></span>
-                                <div class="job__head"><h3 class="job__title">AI Consultant</h3><span class="job__badge">Consulting</span></div>
-                                <p class="job__org">Turing · Remote</p>
-                                <ul class="job__pts">
-                                    <li>Led a team of 12 to train models for Apple and Anthropic, achieving 95%+ accuracy; for Apple, trained models on agentic tool calling, identifying loopholes and inconsistencies, reaching 98% tool-calling accuracy post-training</li>
-                                    <li>Benchmarked trained models in Claude Code to validate tool-call consistency and measure real-world performance</li>
-                                    <li>Advised on LLM strategy, infrastructure architecture, and production deployment roadmaps</li>
-                                    <li>Bridged technical execution with executive stakeholder communication across global teams</li>
-                                </ul>
-                            </li>
-                            <li class="job reveal">
-                                <span class="job__dot" aria-hidden="true"></span>
-                                <div class="job__head"><h3 class="job__title">Generative AI Advisor, SME</h3><span class="job__badge">Advisor</span></div>
-                                <p class="job__org">Kushagramati Analytics · Bengaluru, India</p>
-                                <ul class="job__pts">
-                                    <li>Advised enterprise clients on GenAI adoption strategies and high-ROI use cases</li>
-                                    <li>Conducted feasibility studies for RAG architectures and model selection</li>
-                                    <li>Established governance frameworks for LLM evaluation and hallucination metrics</li>
-                                </ul>
-                            </li>
-                            <li class="job reveal">
-                                <span class="job__dot" aria-hidden="true"></span>
-                                <div class="job__head"><h3 class="job__title">DevOps Engineer</h3><span class="job__badge">Japan</span></div>
-                                <p class="job__org">HCI · Osaka, Japan</p>
-                                <ul class="job__pts">
-                                    <li>Designed CI/CD pipelines for robotic software; reduced release cycle by 30%</li>
-                                    <li>Containerized AI inference services with Docker across dev &amp; prod</li>
-                                    <li>Implemented Prometheus &amp; Grafana monitoring for ML models &amp; robotic services</li>
-                                </ul>
-                            </li>
-                            <li class="job reveal">
-                                <span class="job__dot" aria-hidden="true"></span>
-                                <div class="job__head"><h3 class="job__title">Systems Engineer</h3><span class="job__badge">Japan</span></div>
-                                <p class="job__org">HCI · Osaka, Japan</p>
-                                <ul class="job__pts">
-                                    <li>Architected RoboCafe bio-system with Kawasaki, Yaskawa, Mitsubishi industrial arms</li>
-                                    <li>Integrated Computer Vision models with robot arm kinematics for autonomous manipulation</li>
-                                    <li>Bridged hardware interfaces (PLCs, Robot Controllers) with software AI modules</li>
-                                </ul>
-                            </li>
-                        </ol>
-                    </div>
+                <div class="stats reveal">
+                    <div class="stat"><span class="label">Revenue</span><div class="stat__v"><span class="count" data-to="10" data-prefix="$" data-suffix="M+">$10M+</span></div><p class="stat__l">Contributed to AI platform revenue through enterprise engagements</p></div>
+                    <div class="stat"><span class="label">Accuracy</span><div class="stat__v"><span class="count" data-to="98" data-suffix="%">98%</span></div><p class="stat__l">Agentic tool-calling accuracy after model training</p></div>
+                    <div class="stat"><span class="label">Reliability</span><div class="stat__v">99.9%</div><p class="stat__l">Uptime SLA on an air-gapped, 200-node GPU LLM platform</p></div>
+                    <div class="stat"><span class="label">Delivery</span><div class="stat__v"><span class="count" data-to="50" data-suffix="+">50+</span></div><p class="stat__l">Production deployments across AI, MLOps, and DevOps</p></div>
                 </div>
             </div>
         </section>
 
         <!-- ============================== CASE STUDIES ============================== -->
-        <section class="section section--alt" id="work" aria-labelledby="work-title">
+        <section class="section" id="work" aria-labelledby="work-title">
             <div class="container">
                 <div class="section-head section-head--split">
-                    <div>
-                        <span class="eyebrow reveal">05 — Case studies</span>
-                        <h2 class="h-display split" id="work-title" style="margin-top:20px;">Defining <span class="dim">engagements</span></h2>
+                    <div class="reveal">
+                        <span class="eyebrow">Case studies</span>
+                        <h2 class="h2" id="work-title">Defining <span class="dim">engagements</span></h2>
                     </div>
-                    <p class="lede reveal">Four engagements that show the range: cloud-native agent platforms,
-                        air-gapped LLM infrastructure, frontier-model training, and physical-world automation.</p>
+                    <p class="lede reveal">Cloud-native agent platforms, air-gapped LLM infrastructure,
+                        frontier-model training, and physical-world automation.</p>
                 </div>
 
-                <div class="cases stack" id="cases">
-                    <!-- 01 -->
-                    <article class="case card">
-                        <div class="case__meta">
-                            <span class="case__num" aria-hidden="true">01</span>
-                            <div class="tagrow"><span class="tag">Agentic AI</span><span class="tag">AWS</span><span class="tag">Platform</span></div>
-                            <div>
-                                <h3 class="case__title">Agentic SDLC Platform — Orchestrator &amp; Remote Agents</h3>
-                                <p class="case__client">Woven by Toyota · Current engagement</p>
+                <div class="cases reveal">
+                    <div class="cases__tabs" role="tablist" aria-label="Case studies" aria-orientation="vertical">
+                        <button class="case-tab" role="tab" id="tab-1" aria-controls="case-1" aria-selected="true" type="button"><span class="case-tab__n">01 · Current</span><span class="case-tab__t">Agentic SDLC Platform</span><span class="case-tab__c">Woven by Toyota</span></button>
+                        <button class="case-tab" role="tab" id="tab-2" aria-controls="case-2" aria-selected="false" type="button" tabindex="-1"><span class="case-tab__n">02</span><span class="case-tab__t">Enterprise Watsonx Deployment</span><span class="case-tab__c">IBM · Financial services</span></button>
+                        <button class="case-tab" role="tab" id="tab-3" aria-controls="case-3" aria-selected="false" type="button" tabindex="-1"><span class="case-tab__n">03</span><span class="case-tab__t">Agentic Tool Calling</span><span class="case-tab__c">Turing · Apple &amp; Anthropic</span></button>
+                        <button class="case-tab" role="tab" id="tab-4" aria-controls="case-4" aria-selected="false" type="button" tabindex="-1"><span class="case-tab__n">04</span><span class="case-tab__t">RoboCafe Automation</span><span class="case-tab__c">HCI Japan · Osaka</span></button>
+                    </div>
+
+                    <div>
+                        <article class="case card" id="case-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
+                            <div class="case__head">
+                                <div>
+                                    <h3 class="case__title">Agentic SDLC Platform — Orchestrator &amp; Remote Agents</h3>
+                                    <p class="case__client">Woven by Toyota · Current engagement</p>
+                                </div>
+                                <dl class="kv"><div><dt>Role</dt><dd>Platform Engineer</dd></div><div><dt>Status</dt><dd>Ongoing</dd></div><div><dt>Scope</dt><dd>GenAI across the SDLC</dd></div></dl>
                             </div>
-                            <dl class="kv">
-                                <div><dt>Role</dt><dd>Platform Engineer</dd></div>
-                                <div><dt>Status</dt><dd>Ongoing</dd></div>
-                                <div><dt>Scope</dt><dd>GenAI across the SDLC</dd></div>
-                            </dl>
-                            <div class="stack-chips"><span>AWS</span><span>Multi-Agent Orchestration</span><span>Infrastructure as Code</span><span>CI/CD</span><span>Observability</span></div>
-                        </div>
-                        <div class="case__body">
-                            <div class="csr">
-                                <div><h4>Challenge</h4><p>Bring generative AI into every stage of the software development lifecycle for a global mobility leader, with the security, reliability, and governance expected of enterprise automotive software.</p></div>
-                                <div><h4>Solution</h4><p>An agentic architecture in which a central orchestrator plans work and delegates it to specialised remote agents. As platform engineer I own the AWS foundation beneath it: agent runtime and deployment, networking and identity, infrastructure as code, CI/CD, and end-to-end observability.</p></div>
-                                <div><h4>Outcome</h4><p>A cloud-native platform on which new agents can be added, secured, and scaled independently, so the product can grow with engineering demand without re-architecting.</p></div>
+                            <div class="case__body">
+                                <div class="csr"><h4>Challenge</h4><p>Bring generative AI into every stage of the software development lifecycle for a global mobility leader, with the security, reliability, and governance expected of enterprise automotive software.</p></div>
+                                <div class="csr"><h4>Solution</h4><p>A central orchestrator plans work and delegates it to specialised remote agents. I own the AWS foundation beneath it: agent runtime and deployment, networking and identity, infrastructure as code, CI/CD, and end-to-end observability.</p></div>
+                                <div class="csr"><h4>Outcome</h4><p>A cloud-native platform on which new agents can be added, secured, and scaled independently, so the product can grow with engineering demand without re-architecting.</p></div>
                             </div>
-                            <div class="metrics">
-                                <div class="metric"><b>Multi</b><span>Agent system</span></div>
-                                <div class="metric"><b>AWS</b><span>Cloud-native</span></div>
-                                <div class="metric"><b>E2E</b><span>SDLC coverage</span></div>
+                            <div class="case__foot">
+                                <div class="metrics"><div class="metric"><b>Multi-agent</b><span>Architecture</span></div><div class="metric"><b>AWS</b><span>Cloud-native</span></div><div class="metric"><b>End-to-end</b><span>SDLC coverage</span></div></div>
+                                <div class="stack"><span class="chip">AWS</span><span class="chip">Multi-Agent Orchestration</span><span class="chip">Infrastructure as Code</span><span class="chip">CI/CD</span><span class="chip">Observability</span></div>
                             </div>
-                        </div>
-                    </article>
-                    <!-- 02 -->
-                    <article class="case card">
-                        <div class="case__meta">
-                            <span class="case__num" aria-hidden="true">02</span>
-                            <div class="tagrow"><span class="tag">IBM Watsonx</span><span class="tag">OpenShift</span><span class="tag">LLM Infra</span></div>
-                            <div>
-                                <h3 class="case__title">Enterprise Watsonx Deployment</h3>
-                                <p class="case__client">IBM · Financial services client</p>
+                        </article>
+                        <article class="case card" id="case-2" role="tabpanel" aria-labelledby="tab-2" tabindex="0">
+                            <div class="case__head">
+                                <div>
+                                    <h3 class="case__title">Enterprise Watsonx Deployment</h3>
+                                    <p class="case__client">IBM · Financial services client</p>
+                                </div>
+                                <dl class="kv"><div><dt>Role</dt><dd>Platform SME</dd></div><div><dt>Duration</dt><dd>18 months</dd></div><div><dt>Scope</dt><dd>200-node GPU cluster</dd></div></dl>
                             </div>
-                            <dl class="kv">
-                                <div><dt>Role</dt><dd>Platform SME</dd></div>
-                                <div><dt>Duration</dt><dd>18 months</dd></div>
-                                <div><dt>Scope</dt><dd>200-node GPU cluster</dd></div>
-                            </dl>
-                            <div class="stack-chips"><span>IBM watsonx</span><span>OpenShift</span><span>Granite</span><span>GPU</span></div>
-                        </div>
-                        <div class="case__body">
-                            <div class="csr">
-                                <div><h4>Challenge</h4><p>Client required a fully air-gapped, on-premise LLM platform capable of serving Granite and third-party models across a 200-node GPU cluster. Zero internet dependency and enterprise-grade high availability were non-negotiable.</p></div>
-                                <div><h4>Solution</h4><p>Architected full IBM watsonx stack on Red Hat OpenShift with offline operator lifecycle management, GPU node pools, and mirrored container registries. Deployed end-to-end inference pipelines for 6 model families.</p></div>
-                                <div><h4>Outcome</h4><p>Platform delivered in 8 weeks with 99.9% uptime SLA. Became the reference architecture for 4 subsequent enterprise deployments.</p></div>
+                            <div class="case__body">
+                                <div class="csr"><h4>Challenge</h4><p>Client required a fully air-gapped, on-premise LLM platform capable of serving Granite and third-party models across a 200-node GPU cluster. Zero internet dependency and enterprise-grade high availability were non-negotiable.</p></div>
+                                <div class="csr"><h4>Solution</h4><p>Architected full IBM watsonx stack on Red Hat OpenShift with offline operator lifecycle management, GPU node pools, and mirrored container registries. Deployed end-to-end inference pipelines for 6 model families.</p></div>
+                                <div class="csr"><h4>Outcome</h4><p>Platform delivered in 8 weeks with 99.9% uptime SLA. Became the reference architecture for 4 subsequent enterprise deployments.</p></div>
                             </div>
-                            <div class="metrics">
-                                <div class="metric"><b>99.9%</b><span>Uptime SLA</span></div>
-                                <div class="metric"><b>8 wks</b><span>Delivery</span></div>
-                                <div class="metric"><b>6</b><span>Model families</span></div>
+                            <div class="case__foot">
+                                <div class="metrics"><div class="metric"><b>99.9%</b><span>Uptime SLA</span></div><div class="metric"><b>8 wks</b><span>Delivery</span></div><div class="metric"><b>6</b><span>Model families</span></div></div>
+                                <div class="stack"><span class="chip">IBM watsonx</span><span class="chip">OpenShift</span><span class="chip">Granite</span><span class="chip">GPU</span></div>
                             </div>
-                        </div>
-                    </article>
-                    <!-- 03 -->
-                    <article class="case card">
-                        <div class="case__meta">
-                            <span class="case__num" aria-hidden="true">03</span>
-                            <div class="tagrow"><span class="tag">Model Training</span><span class="tag">Agentic AI</span><span class="tag">Claude Code</span></div>
-                            <div>
-                                <h3 class="case__title">Agentic Tool Calling — Model Training &amp; Benchmarking</h3>
-                                <p class="case__client">Turing · Apple &amp; Anthropic engagement</p>
+                        </article>
+                        <article class="case card" id="case-3" role="tabpanel" aria-labelledby="tab-3" tabindex="0">
+                            <div class="case__head">
+                                <div>
+                                    <h3 class="case__title">Agentic Tool Calling — Model Training &amp; Benchmarking</h3>
+                                    <p class="case__client">Turing · Apple &amp; Anthropic engagement</p>
+                                </div>
+                                <dl class="kv"><div><dt>Role</dt><dd>Tech Lead</dd></div><div><dt>Duration</dt><dd>16 months</dd></div><div><dt>Team</dt><dd>12 engineers</dd></div></dl>
                             </div>
-                            <dl class="kv">
-                                <div><dt>Role</dt><dd>Tech Lead</dd></div>
-                                <div><dt>Duration</dt><dd>16 months</dd></div>
-                                <div><dt>Team</dt><dd>12 engineers</dd></div>
-                            </dl>
-                            <div class="stack-chips"><span>Claude Code</span><span>Anthropic SDK</span><span>PyTorch</span><span>Benchmarking</span></div>
-                        </div>
-                        <div class="case__body">
-                            <div class="csr">
-                                <div><h4>Challenge</h4><p>Apple and Anthropic needed highly accurate models for agentic tool calling. Existing models showed loopholes and inconsistencies in tool-call execution, leading to unreliable agent behaviour in production environments.</p></div>
-                                <div><h4>Solution</h4><p>Led a team of 12 to train models specifically for agentic tool calling. Identified and addressed loopholes and inconsistencies in tool-call patterns through targeted training. Benchmarked the trained models in Claude Code to validate performance and measure real-world accuracy.</p></div>
-                                <div><h4>Outcome</h4><p>Achieved 98% accuracy in tool calling for Apple post-training, surpassing the 95% target. Models demonstrated consistent, reliable agentic behaviour in Claude Code benchmarks with minimal hallucinations or call failures.</p></div>
+                            <div class="case__body">
+                                <div class="csr"><h4>Challenge</h4><p>Apple and Anthropic needed highly accurate models for agentic tool calling. Existing models showed loopholes and inconsistencies in tool-call execution, leading to unreliable agent behaviour in production environments.</p></div>
+                                <div class="csr"><h4>Solution</h4><p>Led a team of 12 to train models specifically for agentic tool calling. Identified and addressed loopholes and inconsistencies in tool-call patterns through targeted training. Benchmarked the trained models in Claude Code to validate performance and measure real-world accuracy.</p></div>
+                                <div class="csr"><h4>Outcome</h4><p>Achieved 98% accuracy in tool calling for Apple post-training, surpassing the 95% target. Models demonstrated consistent, reliable agentic behaviour in Claude Code benchmarks with minimal hallucinations or call failures.</p></div>
                             </div>
-                            <div class="metrics">
-                                <div class="metric"><b>98%</b><span>Tool-call accuracy</span></div>
-                                <div class="metric"><b>12</b><span>Team size</span></div>
-                                <div class="metric"><b>95%+</b><span>Target exceeded</span></div>
+                            <div class="case__foot">
+                                <div class="metrics"><div class="metric"><b>98%</b><span>Tool-call accuracy</span></div><div class="metric"><b>12</b><span>Team size</span></div><div class="metric"><b>95%+</b><span>Target exceeded</span></div></div>
+                                <div class="stack"><span class="chip">Claude Code</span><span class="chip">Anthropic SDK</span><span class="chip">PyTorch</span><span class="chip">Benchmarking</span></div>
                             </div>
-                        </div>
-                    </article>
-                    <!-- 04 -->
-                    <article class="case card">
-                        <div class="case__meta">
-                            <span class="case__num" aria-hidden="true">04</span>
-                            <div class="tagrow"><span class="tag">Robotics</span><span class="tag">Computer Vision</span><span class="tag">CI/CD</span></div>
-                            <div>
-                                <h3 class="case__title">RoboCafe Automation System</h3>
-                                <p class="case__client">HCI Japan · Osaka</p>
+                        </article>
+                        <article class="case card" id="case-4" role="tabpanel" aria-labelledby="tab-4" tabindex="0">
+                            <div class="case__head">
+                                <div>
+                                    <h3 class="case__title">RoboCafe Automation System</h3>
+                                    <p class="case__client">HCI Japan · Osaka</p>
+                                </div>
+                                <dl class="kv"><div><dt>Role</dt><dd>Lead Robotics Engineer</dd></div><div><dt>Duration</dt><dd>22 months</dd></div><div><dt>Team</dt><dd>4 engineers</dd></div></dl>
                             </div>
-                            <dl class="kv">
-                                <div><dt>Role</dt><dd>Lead Robotics Engineer</dd></div>
-                                <div><dt>Duration</dt><dd>22 months</dd></div>
-                                <div><dt>Team</dt><dd>4 engineers</dd></div>
-                            </dl>
-                            <div class="stack-chips"><span>ROS</span><span>OpenCV</span><span>Python</span><span>GitLab CI</span><span>MQTT</span></div>
-                        </div>
-                        <div class="case__body">
-                            <div class="csr">
-                                <div><h4>Challenge</h4><p>Design a fully autonomous cafe with Kawasaki, Yaskawa, and Mitsubishi industrial arms, coordinating object detection, drink preparation, and customer handoff without any human intervention.</p></div>
-                                <div><h4>Solution</h4><p>Integrated real-time computer vision with inverse kinematics controllers over a pub-sub event bus. Built CI/CD pipelines for robotic software delivery, cutting release cycle by 30%.</p></div>
-                                <div><h4>Outcome</h4><p>System deployed at Ritsumeikan University and HCI Japan showcase. 2,000+ autonomous orders served. Demonstrated at international robotics expo in Osaka.</p></div>
+                            <div class="case__body">
+                                <div class="csr"><h4>Challenge</h4><p>Design a fully autonomous cafe with Kawasaki, Yaskawa, and Mitsubishi industrial arms, coordinating object detection, drink preparation, and customer handoff without any human intervention.</p></div>
+                                <div class="csr"><h4>Solution</h4><p>Integrated real-time computer vision with inverse kinematics controllers over a pub-sub event bus. Built CI/CD pipelines for robotic software delivery, cutting release cycle by 30%.</p></div>
+                                <div class="csr"><h4>Outcome</h4><p>System deployed at Ritsumeikan University and HCI Japan showcase. 2,000+ autonomous orders served. Demonstrated at international robotics expo in Osaka.</p></div>
                             </div>
-                            <div class="metrics">
-                                <div class="metric"><b>2K+</b><span>Auto orders</span></div>
-                                <div class="metric"><b>30%</b><span>Release speedup</span></div>
-                                <div class="metric"><b>3</b><span>Robot arms</span></div>
+                            <div class="case__foot">
+                                <div class="metrics"><div class="metric"><b>2K+</b><span>Autonomous orders</span></div><div class="metric"><b>30%</b><span>Faster releases</span></div><div class="metric"><b>3</b><span>Robot arms</span></div></div>
+                                <div class="stack"><span class="chip">ROS</span><span class="chip">OpenCV</span><span class="chip">Python</span><span class="chip">GitLab CI</span><span class="chip">MQTT</span></div>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== TESTIMONIALS ============================== -->
+        <section class="section section--alt" id="testimonials" aria-labelledby="tst-title">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Testimonials</span>
+                    <h2 class="h2" id="tst-title">In their <span class="dim">words</span></h2>
+                </div>
+                <div class="quotes">
+                    <figure class="quote card reveal">
+                        <p class="quote__pull">“I will recommend him as a leader for Agentic AI development for Japanese customers.”</p>
+                        <blockquote>"Mr Pavan is not only a very talented AI Engineer who can lead development projects using Agentic AI but has excellent communication skills using Japanese and English. He has experience leading more than 100 MVP projects utilizing watsonx and IBM Data &amp; AI and Automation products working with Japan team and Japanese customers. I will recommend him as a leader for Agentic AI development for Japanese customers."</blockquote>
+                        <figcaption><span class="quote__av" aria-hidden="true">KN</span><span class="quote__who"><b>Keisuke Nishikado</b><span>Director, Consult Partner · Kyndryl Japan (formerly IBM Japan)</span></span></figcaption>
+                    </figure>
+                    <figure class="quote card reveal">
+                        <p class="quote__pull">“He serves as a bridge between Japan and India.”</p>
+                        <blockquote>"Pavan-san has been actively involved in validating BYOM and fine-tuning models using generative AI. Within the India team, he has taken the lead in exploring new technologies and sharing them with his colleagues. Furthermore, he serves as a bridge between Japan and India, supporting his colleagues not only from a technical perspective but also by helping us overcome differences in cultural backgrounds and language barriers to work together toward making our organization even better. I look forward to seeing him continue to excel in the future."</blockquote>
+                        <figcaption><span class="quote__av" aria-hidden="true">CT</span><span class="quote__who"><b>Chie Takeda</b><span>Director, AI Lab Japan Office · IBM</span></span></figcaption>
+                    </figure>
+                    <figure class="quote card reveal">
+                        <p class="quote__pull">“After he joined, it became highly successful and even attracted broader recognition.”</p>
+                        <blockquote>"Mr. Pavan Shiraguppi not only possesses outstanding technical skills as an AI engineer, but also has a high level of proficiency in Japanese. In addition, he has a bright, proactive, and humble personality. During my time at IBM, I worked with him to promote collaboration between IBM Japan and IBM India. Before he fully joined the team, collaboration was difficult - after he joined, it became highly successful and even attracted broader recognition."</blockquote>
+                        <figcaption><span class="quote__av" aria-hidden="true">HN</span><span class="quote__who"><b>Hideaki Nonaka</b><span>Business Consultant</span></span></figcaption>
+                    </figure>
+                    <figure class="quote card reveal">
+                        <p class="quote__pull">“A deep understanding of Japanese clients and their expectations.”</p>
+                        <blockquote>"I had the pleasure of working with him on several projects involving machine learning and large language models. He has a deep understanding of Japanese clients and their expectations, which is a great strength when working in global teams. In addition, he is very knowledgeable about modern technologies such as cloud computing and AI."</blockquote>
+                        <figcaption><span class="quote__av" aria-hidden="true">NI</span><span class="quote__who"><b>Naosuke Ito</b><span>Technology Engineer · IBM</span></span></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== EXPERIENCE ============================== -->
+        <section class="section" id="experience" aria-labelledby="xp-title">
+            <div class="container xp">
+                <div class="xp__side reveal">
+                    <span class="eyebrow">Experience</span>
+                    <h2 class="h2" id="xp-title">Career <span class="dim">trajectory</span></h2>
+                    <p class="lede" style="margin-top:18px;">From industrial robotics in Osaka to enterprise GenAI
+                        platforms: one through-line of shipping AI that works in production.</p>
+                    <a class="btn btn--sm" href="resume.pdf" download style="margin-top:26px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16" /></svg>
+                        Download full CV</a>
+                </div>
+                <div class="xp__list" id="xp-list">
+                    <span class="xp__rail" aria-hidden="true"><i id="xp-rail"></i></span>
+                    <ol>
+                        <li class="job job--current reveal">
+                            <span class="job__dot" aria-hidden="true"></span>
+                            <div class="job__head"><h3 class="job__title">GenAI Platform Engineer</h3><span class="job__badge">Current</span></div>
+                            <p class="job__org">Woven by Toyota (Client Engagement) · Agentic SDLC Product</p>
+                            <ul class="job__pts">
+                                <li>Platform engineer for a GenAI SDLC product built on an orchestrator that delegates work to specialised remote agents</li>
+                                <li>Own the AWS cloud foundation: agent runtime, networking, identity &amp; access, and infrastructure as code</li>
+                                <li>Build CI/CD, observability, and security guardrails so agents ship safely and scale with enterprise demand</li>
+                            </ul>
+                        </li>
+                        <li class="job reveal">
+                            <span class="job__dot" aria-hidden="true"></span>
+                            <div class="job__head"><h3 class="job__title">Watsonx Platform SME</h3><span class="job__badge">IBM</span></div>
+                            <p class="job__org">IBM India Pvt Ltd · Bengaluru, India</p>
+                            <ul class="job__pts">
+                                <li>Leading secure on-premise deployments of full IBM watsonx stack (.ai, .data, Orchestrate)</li>
+                                <li>Managing end-to-end deployment on Red Hat OpenShift with operator lifecycle &amp; GPU node pools</li>
+                                <li>Architecting scalable air-gapped inference clusters for Granite &amp; third-party LLMs</li>
+                            </ul>
+                        </li>
+                        <li class="job reveal">
+                            <span class="job__dot" aria-hidden="true"></span>
+                            <div class="job__head"><h3 class="job__title">Generative AI Engineer</h3><span class="job__badge">IBM</span></div>
+                            <p class="job__org">IBM India Pvt Ltd · Bengaluru, India</p>
+                            <ul class="job__pts">
+                                <li>Spearheaded high-impact GenAI engagements contributing to $10M+ revenue</li>
+                                <li>Fine-tuned Llama, Granite, and GPT variants; reduced token latency by 40%</li>
+                                <li>Built RAG systems with ChromaDB &amp; Pinecone; AI agents with Watsonx Orchestrate &amp; LangChain</li>
+                            </ul>
+                        </li>
+                        <li class="job reveal">
+                            <span class="job__dot" aria-hidden="true"></span>
+                            <div class="job__head"><h3 class="job__title">AI Consultant</h3><span class="job__badge">Consulting</span></div>
+                            <p class="job__org">Turing · Remote</p>
+                            <ul class="job__pts">
+                                <li>Led a team of 12 to train models for Apple and Anthropic, achieving 95%+ accuracy; for Apple, trained models on agentic tool calling, identifying loopholes and inconsistencies, reaching 98% tool-calling accuracy post-training</li>
+                                <li>Benchmarked trained models in Claude Code to validate tool-call consistency and measure real-world performance</li>
+                                <li>Advised on LLM strategy, infrastructure architecture, and production deployment roadmaps</li>
+                                <li>Bridged technical execution with executive stakeholder communication across global teams</li>
+                            </ul>
+                        </li>
+                        <li class="job reveal">
+                            <span class="job__dot" aria-hidden="true"></span>
+                            <div class="job__head"><h3 class="job__title">Generative AI Advisor, SME</h3><span class="job__badge">Advisor</span></div>
+                            <p class="job__org">Kushagramati Analytics · Bengaluru, India</p>
+                            <ul class="job__pts">
+                                <li>Advised enterprise clients on GenAI adoption strategies and high-ROI use cases</li>
+                                <li>Conducted feasibility studies for RAG architectures and model selection</li>
+                                <li>Established governance frameworks for LLM evaluation and hallucination metrics</li>
+                            </ul>
+                        </li>
+                        <li class="job reveal">
+                            <span class="job__dot" aria-hidden="true"></span>
+                            <div class="job__head"><h3 class="job__title">DevOps Engineer</h3><span class="job__badge">Japan</span></div>
+                            <p class="job__org">HCI · Osaka, Japan</p>
+                            <ul class="job__pts">
+                                <li>Designed CI/CD pipelines for robotic software; reduced release cycle by 30%</li>
+                                <li>Containerized AI inference services with Docker across dev &amp; prod</li>
+                                <li>Implemented Prometheus &amp; Grafana monitoring for ML models &amp; robotic services</li>
+                            </ul>
+                        </li>
+                        <li class="job reveal">
+                            <span class="job__dot" aria-hidden="true"></span>
+                            <div class="job__head"><h3 class="job__title">Systems Engineer</h3><span class="job__badge">Japan</span></div>
+                            <p class="job__org">HCI · Osaka, Japan</p>
+                            <ul class="job__pts">
+                                <li>Architected RoboCafe bio-system with Kawasaki, Yaskawa, Mitsubishi industrial arms</li>
+                                <li>Integrated Computer Vision models with robot arm kinematics for autonomous manipulation</li>
+                                <li>Bridged hardware interfaces (PLCs, Robot Controllers) with software AI modules</li>
+                            </ul>
+                        </li>
+                    </ol>
                 </div>
             </div>
         </section>
 
         <!-- ============================== PROCESS ============================== -->
-        <section class="section" id="process" aria-labelledby="process-title">
+        <section class="section section--alt" id="process" aria-labelledby="process-title">
             <div class="container">
-                <div class="section-head">
-                    <span class="eyebrow reveal">06 — Process</span>
-                    <h2 class="h-display split" id="process-title">How I <span class="dim">work</span></h2>
+                <div class="section-head section-head--split">
+                    <div class="reveal">
+                        <span class="eyebrow">Approach</span>
+                        <h2 class="h2" id="process-title">How I <span class="dim">work</span></h2>
+                    </div>
+                    <p class="lede reveal">A predictable path from problem to platform, with evaluation and
+                        operability built in from day one.</p>
                 </div>
                 <div class="steps">
-                    <div class="step card reveal">
-                        <span class="step__n" aria-hidden="true">01</span>
-                        <h3>Discover</h3>
-                        <p>Deep-dive into the business problem before touching tooling. I map stakeholder needs, data realities, and latency constraints to define what "done" actually means.</p>
-                    </div>
-                    <div class="step card reveal">
-                        <span class="step__n" aria-hidden="true">02</span>
-                        <h3>Architect</h3>
-                        <p>Design for failure from day one. I choose boring infrastructure where possible: solid vector stores, proven orchestration, observable pipelines. Innovation comes only where it creates a real competitive edge.</p>
-                    </div>
-                    <div class="step card reveal">
-                        <span class="step__n" aria-hidden="true">03</span>
-                        <h3>Deliver</h3>
-                        <p>Ship to production with evaluation harnesses, rollback plans, and monitoring dashboards pre-built. A model in prod with no evals is a liability, and I make sure clients are never left holding one.</p>
-                    </div>
+                    <div class="step card reveal"><span class="step__n">01</span><h3>Discover</h3><p>Deep-dive into the business problem before touching tooling. I map stakeholder needs, data realities, and latency constraints to define what "done" actually means.</p></div>
+                    <div class="step card reveal"><span class="step__n">02</span><h3>Architect</h3><p>Design for failure from day one. I choose boring infrastructure where possible: solid vector stores, proven orchestration, observable pipelines. Innovation comes only where it creates a real competitive edge.</p></div>
+                    <div class="step card reveal"><span class="step__n">03</span><h3>Deliver</h3><p>Ship to production with evaluation harnesses, rollback plans, and monitoring dashboards pre-built. A model in prod with no evals is a liability, and I make sure clients are never left holding one.</p></div>
+                    <div class="step card reveal"><span class="step__n">04</span><h3>Operate</h3><p>Production is where value is proven. I hand over run-books, dashboards, and cost visibility, and keep evaluation running so quality holds as usage grows.</p></div>
                 </div>
             </div>
         </section>
 
         <!-- ============================== EXPERTISE ============================== -->
-        <section class="section section--alt" id="expertise" aria-labelledby="skills-title">
+        <section class="section" id="expertise" aria-labelledby="skills-title">
             <div class="container">
                 <div class="section-head section-head--split">
-                    <div>
-                        <span class="eyebrow reveal">07 — Expertise</span>
-                        <h2 class="h-display split" id="skills-title" style="margin-top:20px;">Technical <span class="dim">arsenal</span></h2>
+                    <div class="reveal">
+                        <span class="eyebrow">Expertise</span>
+                        <h2 class="h2" id="skills-title">Technical <span class="dim">depth</span></h2>
                     </div>
-                    <p class="lede reveal">Filter by focus area to see where each capability sits.</p>
+                    <p class="lede reveal">The tools and platforms behind the work, grouped by focus area.</p>
                 </div>
-
-                <div class="skills-tabs reveal" role="group" aria-label="Filter skills">
-                    <button class="chip-btn" type="button" data-filter="all" aria-pressed="true">All</button>
-                    <button class="chip-btn" type="button" data-filter="ai" aria-pressed="false">AI &amp; Agents</button>
-                    <button class="chip-btn" type="button" data-filter="cloud" aria-pressed="false">Cloud &amp; Platform</button>
-                    <button class="chip-btn" type="button" data-filter="ml" aria-pressed="false">ML &amp; Data</button>
+                <div class="filters reveal" role="group" aria-label="Filter expertise">
+                    <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+                    <button class="filter" type="button" data-filter="ai" aria-pressed="false">AI &amp; agents</button>
+                    <button class="filter" type="button" data-filter="cloud" aria-pressed="false">Cloud &amp; platform</button>
+                    <button class="filter" type="button" data-filter="ml" aria-pressed="false">ML &amp; data</button>
                 </div>
-
                 <div class="skills">
                     <div class="skill card reveal" data-cat="ai">
-                        <div class="skill__head">
-                            <span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 15.9 9 18.8l-.8-2.9a4.5 4.5 0 0 0-3.1-3.1L2.2 12l2.9-.8a4.5 4.5 0 0 0 3.1-3.1L9 5.2l.8 2.9a4.5 4.5 0 0 0 3.1 3.1l2.9.8-2.9.8a4.5 4.5 0 0 0-3.1 3.1zM18.3 8.7 18 9.8l-.3-1.1a3.4 3.4 0 0 0-2.4-2.4L14.2 6l1.1-.3a3.4 3.4 0 0 0 2.4-2.4l.3-1.1.3 1.1a3.4 3.4 0 0 0 2.4 2.4l1.1.3-1.1.3a3.4 3.4 0 0 0-2.4 2.4z" /></svg></span>
-                            <h3>Generative &amp; Agentic AI</h3><span class="skill__count">10</span>
-                        </div>
-                        <div class="pills"><span>Multi-Agent Orchestration</span><span>Remote Agents</span><span>Agentic Tool Calling</span><span>Claude &amp; Anthropic SDK</span><span>LLM Fine-tuning</span><span>RAG Architecture</span><span>LangChain</span><span>CrewAI</span><span>Watsonx</span><span>RAGAS</span></div>
+                        <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5" /><circle cx="5" cy="19" r="2.5" /><circle cx="19" cy="19" r="2.5" /><path d="M12 7.5v4M12 11.5 6.5 17M12 11.5l5.5 5.5" /></svg></span><h3>Generative &amp; Agentic AI</h3></div>
+                        <div class="pills"><span class="chip">Multi-Agent Orchestration</span><span class="chip">Remote Agents</span><span class="chip">Agentic Tool Calling</span><span class="chip">Claude &amp; Anthropic SDK</span><span class="chip">LLM Fine-tuning</span><span class="chip">RAG Architecture</span><span class="chip">LangChain</span><span class="chip">CrewAI</span><span class="chip">Watsonx</span><span class="chip">RAGAS</span></div>
                     </div>
                     <div class="skill card reveal" data-cat="cloud">
-                        <div class="skill__head">
-                            <span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4.25 4.25 0 0 1-.5 8.5H7z" /></svg></span>
-                            <h3>AWS &amp; Cloud</h3><span class="skill__count">8</span>
-                        </div>
-                        <div class="pills"><span>AWS</span><span>Amazon Bedrock</span><span>Amazon SageMaker</span><span>Amazon EKS</span><span>AWS Lambda</span><span>IAM &amp; VPC</span><span>CloudWatch</span><span>Infrastructure as Code</span></div>
+                        <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4.25 4.25 0 0 1-.5 8.5H7z" /></svg></span><h3>AWS &amp; Cloud</h3></div>
+                        <div class="pills"><span class="chip">AWS</span><span class="chip">Amazon Bedrock</span><span class="chip">Amazon SageMaker</span><span class="chip">Amazon EKS</span><span class="chip">AWS Lambda</span><span class="chip">IAM &amp; VPC</span><span class="chip">CloudWatch</span><span class="chip">Infrastructure as Code</span></div>
                     </div>
                     <div class="skill card reveal" data-cat="cloud">
-                        <div class="skill__head">
-                            <span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5 12 3 3 7.5m18 0L12 12m9-4.5v9L12 21m0-9L3 7.5M12 12v9M3 7.5v9L12 21" /></svg></span>
-                            <h3>Platform &amp; DevOps</h3><span class="skill__count">8</span>
-                        </div>
-                        <div class="pills"><span>Red Hat OpenShift</span><span>Kubernetes</span><span>Docker</span><span>Terraform</span><span>Helm</span><span>ArgoCD</span><span>Tekton</span><span>Ansible</span></div>
+                        <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5 12 3 3 7.5m18 0L12 12m9-4.5v9L12 21m0-9L3 7.5M12 12v9M3 7.5v9L12 21" /></svg></span><h3>Platform &amp; DevOps</h3></div>
+                        <div class="pills"><span class="chip">Red Hat OpenShift</span><span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Terraform</span><span class="chip">Helm</span><span class="chip">ArgoCD</span><span class="chip">Tekton</span><span class="chip">Ansible</span></div>
                     </div>
                     <div class="skill card reveal" data-cat="cloud ai">
-                        <div class="skill__head">
-                            <span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2" /><rect x="3" y="13" width="18" height="7" rx="2" /><path d="M7 7.5h.01M7 16.5h.01" /></svg></span>
-                            <h3>AI Infrastructure</h3><span class="skill__count">8</span>
-                        </div>
-                        <div class="pills"><span>MLflow</span><span>Model Serving</span><span>GPU Clusters</span><span>LlamaIndex</span><span>ChromaDB</span><span>Pinecone</span><span>FAISS</span><span>Weaviate</span></div>
+                        <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2" /><rect x="3" y="13" width="18" height="7" rx="2" /><path d="M7 7.5h.01M7 16.5h.01" /></svg></span><h3>AI Infrastructure</h3></div>
+                        <div class="pills"><span class="chip">MLflow</span><span class="chip">Model Serving</span><span class="chip">GPU Clusters</span><span class="chip">LlamaIndex</span><span class="chip">ChromaDB</span><span class="chip">Pinecone</span><span class="chip">FAISS</span><span class="chip">Weaviate</span></div>
                     </div>
                     <div class="skill card reveal" data-cat="ml">
-                        <div class="skill__head">
-                            <span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18" /><path d="m7 15 4-4 3 3 5-6" /></svg></span>
-                            <h3>Machine Learning &amp; Data</h3><span class="skill__count">8</span>
-                        </div>
-                        <div class="pills"><span>PyTorch</span><span>TensorFlow</span><span>Scikit-learn</span><span>XGBoost</span><span>Hugging Face</span><span>Pandas</span><span>Statistical Modeling</span><span>A/B Testing</span></div>
+                        <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18" /><path d="m7 15 4-4 3 3 5-6" /></svg></span><h3>Machine Learning &amp; Data</h3></div>
+                        <div class="pills"><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Scikit-learn</span><span class="chip">XGBoost</span><span class="chip">Hugging Face</span><span class="chip">Pandas</span><span class="chip">Statistical Modeling</span><span class="chip">A/B Testing</span></div>
                     </div>
                     <div class="skill card reveal" data-cat="ml ai">
-                        <div class="skill__head">
-                            <span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></svg></span>
-                            <h3>NLP &amp; Computer Vision</h3><span class="skill__count">6</span>
-                        </div>
-                        <div class="pills"><span>BERT</span><span>GPT</span><span>Transformers</span><span>OpenCV</span><span>Sentiment Analysis</span><span>Text Classification</span></div>
+                        <div class="skill__head"><span class="skill__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></svg></span><h3>NLP &amp; Computer Vision</h3></div>
+                        <div class="pills"><span class="chip">BERT</span><span class="chip">GPT</span><span class="chip">Transformers</span><span class="chip">OpenCV</span><span class="chip">Sentiment Analysis</span><span class="chip">Text Classification</span></div>
                     </div>
                 </div>
-
-                <div class="langs card reveal">
-                    <span class="k-label">Languages &amp; scripting</span>
-                    <span>Python</span><span>SQL</span><span>Bash</span><span>React</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================== PROJECTS ============================== -->
-        <section class="section" id="projects" aria-labelledby="projects-title">
-            <div class="container">
-                <div class="section-head section-head--split">
-                    <div>
-                        <span class="eyebrow reveal">08 — Projects</span>
-                        <h2 class="h-display split" id="projects-title" style="margin-top:20px;">Featured <span class="dim">work</span></h2>
-                    </div>
-                    <p class="lede reveal">Robotics systems I engineered in Japan, on video.</p>
-                </div>
-                <div class="projects">
-                    <a class="project card reveal" href="https://youtu.be/cvOc5uoqdBo" target="_blank" rel="noopener" data-cursor="Watch">
-                        <div class="project__media">
-                            <img src="https://img.youtube.com/vi/cvOc5uoqdBo/hqdefault.jpg" alt="RoboCafe demo video thumbnail" loading="lazy" decoding="async" width="480" height="360">
-                            <span class="project__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z" /></svg></span>
-                        </div>
-                        <div class="project__body">
-                            <h3>RoboCafe <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg></h3>
-                            <p>Multi-Robot Cafe Automation System orchestrating industrial arms and service robots for seamless autonomous operations.</p>
-                        </div>
-                    </a>
-                    <a class="project card reveal" href="https://youtu.be/0SNUPvxoKJs" target="_blank" rel="noopener" data-cursor="Watch">
-                        <div class="project__media">
-                            <img src="https://img.youtube.com/vi/0SNUPvxoKJs/hqdefault.jpg" alt="Library Robot demo video thumbnail" loading="lazy" decoding="async" width="480" height="360">
-                            <span class="project__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z" /></svg></span>
-                        </div>
-                        <div class="project__body">
-                            <h3>Library Robot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg></h3>
-                            <p>Autonomous Book Retrieval System with integrated computer vision and robotic kinematics for smart library automation.</p>
-                        </div>
-                    </a>
-                    <a class="project card reveal" href="https://www.youtube.com/watch?v=_y39o1qxa2Q" target="_blank" rel="noopener" data-cursor="Watch">
-                        <div class="project__media">
-                            <img src="https://img.youtube.com/vi/_y39o1qxa2Q/hqdefault.jpg" alt="Ritsumeikan University robotics demo video thumbnail" loading="lazy" decoding="async" width="480" height="360">
-                            <span class="project__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z" /></svg></span>
-                        </div>
-                        <div class="project__body">
-                            <h3>Ritsumeikan University <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg></h3>
-                            <p>Robotics Demo showcasing advanced multi-agent coordination and AI-driven automation at Ritsumeikan University, Japan.</p>
-                        </div>
-                    </a>
-                </div>
+                <div class="langs card reveal"><span class="label">Languages</span><span>Python</span><span>SQL</span><span>Bash</span><span>React</span></div>
             </div>
         </section>
 
         <!-- ============================== CREDENTIALS ============================== -->
         <section class="section section--alt" id="credentials" aria-labelledby="creds-title">
             <div class="container">
-                <div class="section-head">
-                    <span class="eyebrow reveal">09 — Credentials</span>
-                    <h2 class="h-display split" id="creds-title">Education &amp; <span class="dim">certification</span></h2>
+                <div class="section-head reveal">
+                    <span class="eyebrow">Credentials</span>
+                    <h2 class="h2" id="creds-title">Education &amp; <span class="dim">certification</span></h2>
                 </div>
                 <div class="creds">
-                    <div class="cred-feature card reveal">
-                        <div class="cred-feature__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6" /><path d="m9 14.5-1.5 7L12 19l4.5 2.5-1.5-7" /><path d="m9.5 9 1.7 1.7L14.5 7.5" /></svg></div>
-                        <span class="k-label">Anthropic</span>
-                        <h3>Claude Certified <span class="chrome-text">Developer</span></h3>
+                    <div class="cert-main card reveal">
+                        <div class="cert-main__badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6" /><path d="m9 14.5-1.5 7L12 19l4.5 2.5-1.5-7" /><path d="m9.5 9 1.7 1.7L14.5 7.5" /></svg></div>
+                        <span class="label">Anthropic</span>
+                        <h3>Claude Certified Developer</h3>
                         <p>Certified in building production applications and agents with Claude, the same skills I
                             apply to enterprise agentic platforms.</p>
                     </div>
-                    <div class="edu card reveal">
-                        <div class="edu__top"><span class="edu__mark">IMT</span><span class="k-label">2023 – 2024</span></div>
-                        <h3>Master of Business Administration</h3>
-                        <p>Design Thinking and Entrepreneurship</p>
-                        <small>Institute of Management Technology, Ghaziabad</small>
-                    </div>
-                    <div class="edu card reveal">
-                        <div class="edu__top"><span class="edu__mark">MIT</span><span class="k-label">2015 – 2019</span></div>
-                        <h3>Bachelor of Technology</h3>
-                        <p>Electronics and Instrumentation</p>
-                        <small>Manipal Institute of Technology, Manipal</small>
+                    <div class="edus">
+                        <div class="edu card reveal"><span class="edu__mark">IMT</span><div><span class="label">2023 – 2024</span><h3>Master of Business Administration</h3><p>Design Thinking and Entrepreneurship</p><small>Institute of Management Technology, Ghaziabad</small></div></div>
+                        <div class="edu card reveal"><span class="edu__mark">MIT</span><div><span class="label">2015 – 2019</span><h3>Bachelor of Technology</h3><p>Electronics and Instrumentation</p><small>Manipal Institute of Technology, Manipal</small></div></div>
                     </div>
                     <div class="certs">
                         <div class="cert card reveal"><span class="cert__mark">K8s</span><div><b>Kubernetes &amp; Docker</b><span>IBM Certified</span></div></div>
@@ -788,101 +631,97 @@
             </div>
         </section>
 
-        <!-- ============================== TESTIMONIALS ============================== -->
-        <section class="section" id="testimonials" aria-labelledby="tst-title">
+        <!-- ============================== EARLIER WORK ============================== -->
+        <section class="section" id="projects" aria-labelledby="projects-title">
             <div class="container">
-                <div class="section-head">
-                    <span class="eyebrow reveal">10 — Testimonials</span>
-                    <h2 class="h-display split" id="tst-title">From the <span class="dim">field</span></h2>
+                <div class="section-head section-head--split">
+                    <div class="reveal">
+                        <span class="eyebrow">Earlier work</span>
+                        <h2 class="h2" id="projects-title">Robotics <span class="dim">in Japan</span></h2>
+                    </div>
+                    <p class="lede reveal">Where my production mindset began: autonomous systems that had to work
+                        in front of real customers.</p>
                 </div>
-                <div class="quotes">
-                    <figure class="quote card reveal">
-                        <svg class="quote__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 5C6 6.4 4 9.2 4 13v6h6v-6H7c0-2.6 1.3-4.5 3.4-5.4L9.5 5zm10 0C16 6.4 14 9.2 14 13v6h6v-6h-3c0-2.6 1.3-4.5 3.4-5.4L19.5 5z" /></svg>
-                        <blockquote>"Pavan-san has been actively involved in validating BYOM and fine-tuning models using generative AI. Within the India team, he has taken the lead in exploring new technologies and sharing them with his colleagues. Furthermore, he serves as a bridge between Japan and India, supporting his colleagues not only from a technical perspective but also by helping us overcome differences in cultural backgrounds and language barriers to work together toward making our organization even better. I look forward to seeing him continue to excel in the future."</blockquote>
-                        <figcaption><span class="quote__av">CT</span><span class="quote__who"><b>Chie Takeda</b><span>Director, AI Lab Japan Office · IBM</span></span><span class="quote__ctx">IBM engagement</span></figcaption>
-                    </figure>
-                    <figure class="quote card reveal">
-                        <svg class="quote__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 5C6 6.4 4 9.2 4 13v6h6v-6H7c0-2.6 1.3-4.5 3.4-5.4L9.5 5zm10 0C16 6.4 14 9.2 14 13v6h6v-6h-3c0-2.6 1.3-4.5 3.4-5.4L19.5 5z" /></svg>
-                        <blockquote>"Mr Pavan is not only a very talented AI Engineer who can lead development projects using Agentic AI but has excellent communication skills using Japanese and English. He has experience leading more than 100 MVP projects utilizing watsonx and IBM Data &amp; AI and Automation products working with Japan team and Japanese customers. I will recommend him as a leader for Agentic AI development for Japanese customers."</blockquote>
-                        <figcaption><span class="quote__av">KN</span><span class="quote__who"><b>Keisuke Nishikado</b><span>Director, Consult Partner · Kyndryl Japan (formerly IBM Japan)</span></span><span class="quote__ctx">IBM engagement</span></figcaption>
-                    </figure>
-                    <figure class="quote card reveal">
-                        <svg class="quote__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 5C6 6.4 4 9.2 4 13v6h6v-6H7c0-2.6 1.3-4.5 3.4-5.4L9.5 5zm10 0C16 6.4 14 9.2 14 13v6h6v-6h-3c0-2.6 1.3-4.5 3.4-5.4L19.5 5z" /></svg>
-                        <blockquote>"I had the pleasure of working with him on several projects involving machine learning and large language models. He has a deep understanding of Japanese clients and their expectations, which is a great strength when working in global teams. In addition, he is very knowledgeable about modern technologies such as cloud computing and AI."</blockquote>
-                        <figcaption><span class="quote__av">NI</span><span class="quote__who"><b>Naosuke Ito</b><span>Technology Engineer · IBM</span></span><span class="quote__ctx">IBM engagement</span></figcaption>
-                    </figure>
-                    <figure class="quote card reveal">
-                        <svg class="quote__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 5C6 6.4 4 9.2 4 13v6h6v-6H7c0-2.6 1.3-4.5 3.4-5.4L9.5 5zm10 0C16 6.4 14 9.2 14 13v6h6v-6h-3c0-2.6 1.3-4.5 3.4-5.4L19.5 5z" /></svg>
-                        <blockquote>"Mr. Pavan Shiraguppi not only possesses outstanding technical skills as an AI engineer, but also has a high level of proficiency in Japanese. In addition, he has a bright, proactive, and humble personality. During my time at IBM, I worked with him to promote collaboration between IBM Japan and IBM India. Before he fully joined the team, collaboration was difficult - after he joined, it became highly successful and even attracted broader recognition."</blockquote>
-                        <figcaption><span class="quote__av">HN</span><span class="quote__who"><b>Hideaki Nonaka</b><span>Business Consultant</span></span><span class="quote__ctx">Independent</span></figcaption>
-                    </figure>
+                <div class="projects">
+                    <a class="project card card--hover reveal" href="https://youtu.be/cvOc5uoqdBo" target="_blank" rel="noopener">
+                        <div class="project__media"><img src="https://img.youtube.com/vi/cvOc5uoqdBo/hqdefault.jpg" alt="RoboCafe demo video" loading="lazy" decoding="async" width="480" height="360"><span class="project__play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z" /></svg>Watch demo</span></div>
+                        <div class="project__body"><h3>RoboCafe <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></h3><p>Multi-Robot Cafe Automation System orchestrating industrial arms and service robots for seamless autonomous operations.</p></div>
+                    </a>
+                    <a class="project card card--hover reveal" href="https://youtu.be/0SNUPvxoKJs" target="_blank" rel="noopener">
+                        <div class="project__media"><img src="https://img.youtube.com/vi/0SNUPvxoKJs/hqdefault.jpg" alt="Library Robot demo video" loading="lazy" decoding="async" width="480" height="360"><span class="project__play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z" /></svg>Watch demo</span></div>
+                        <div class="project__body"><h3>Library Robot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></h3><p>Autonomous Book Retrieval System with integrated computer vision and robotic kinematics for smart library automation.</p></div>
+                    </a>
+                    <a class="project card card--hover reveal" href="https://www.youtube.com/watch?v=_y39o1qxa2Q" target="_blank" rel="noopener">
+                        <div class="project__media"><img src="https://img.youtube.com/vi/_y39o1qxa2Q/hqdefault.jpg" alt="Ritsumeikan University robotics demo video" loading="lazy" decoding="async" width="480" height="360"><span class="project__play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z" /></svg>Watch demo</span></div>
+                        <div class="project__body"><h3>Ritsumeikan University <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></h3><p>Robotics Demo showcasing advanced multi-agent coordination and AI-driven automation at Ritsumeikan University, Japan.</p></div>
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- ============================== CONTACT ============================== -->
-        <section class="contact" id="contact" aria-labelledby="contact-title">
-            <div class="container">
-                <span class="eyebrow reveal">11 — Contact</span>
-                <h2 class="contact__title split" id="contact-title" style="margin-top:28px;">Let's build <span class="dim">together</span></h2>
-                <p class="lede reveal">Partnering with enterprise leaders to design, secure, and scale agentic AI
-                    platforms on AWS, from first architecture review to production.</p>
-                <div class="contact__cta reveal">
-                    <a class="btn btn--primary btn--lg magnetic" href="mailto:shiraguppipavan@gmail.com" data-cursor-hover>Start a conversation
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
-                    <a class="btn btn--lg magnetic" href="https://linkedin.com/in/pavan-shiraguppi" target="_blank" rel="noopener" data-cursor-hover>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" /></svg>
-                        LinkedIn</a>
-                    <a class="btn btn--lg magnetic" href="resume.pdf" download data-cursor-hover>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16" /></svg>
-                        Download CV</a>
-                </div>
+        <section class="section section--alt" id="contact" aria-labelledby="contact-title">
+            <div class="container contact">
                 <div class="reveal">
-                    <button class="email-copy" type="button" id="email-copy" data-email="shiraguppipavan@gmail.com" data-cursor="Copy">
-                        shiraguppipavan@gmail.com <i>Copy</i>
+                    <span class="eyebrow">Contact</span>
+                    <h2 class="contact__title" id="contact-title">Let's build <span class="dim">what's next.</span></h2>
+                    <p class="lede">Planning an agentic AI platform, or taking one to production on AWS? I'm glad to
+                        start with a conversation about your architecture and goals.</p>
+                </div>
+                <div class="contact__panel card reveal">
+                    <a class="contact__row" href="mailto:shiraguppipavan@gmail.com">
+                        <span><small>Email</small><b>shiraguppipavan@gmail.com</b></span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                    </a>
+                    <button class="contact__row" type="button" data-copy="shiraguppipavan@gmail.com">
+                        <span><small>Prefer to paste it?</small><b>Copy email address</b></span>
+                        <em>Copy</em>
                     </button>
+                    <a class="contact__row" href="https://linkedin.com/in/pavan-shiraguppi" target="_blank" rel="noopener">
+                        <span><small>LinkedIn</small><b>in/pavan-shiraguppi</b></span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                    </a>
+                    <a class="contact__row" href="resume.pdf" download>
+                        <span><small>CV</small><b>Download résumé (PDF)</b></span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16" /></svg>
+                    </a>
+                    <p class="contact__note"><span class="pulse" aria-hidden="true"></span>Based in Bengaluru (IST) · working with teams in Japan, the US, and India</p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer__row">
-                <span>© <span id="year">2026</span> Pavan Shiraguppi · Bengaluru, India</span>
-                <nav class="footer__links" aria-label="Footer">
-                    <a href="https://linkedin.com/in/pavan-shiraguppi" target="_blank" rel="noopener">LinkedIn</a>
-                    <a href="mailto:shiraguppipavan@gmail.com">Email</a>
-                    <a href="resume.pdf" download>CV</a>
-                    <a href="#hero">Back to top ↑</a>
-                </nav>
-            </div>
+        <div class="container footer__row">
+            <span>© <span id="year">2026</span> Pavan Shiraguppi</span>
+            <nav class="footer__links" aria-label="Footer">
+                <a href="https://linkedin.com/in/pavan-shiraguppi" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:shiraguppipavan@gmail.com">Email</a>
+                <a href="resume.pdf" download>CV</a>
+                <a href="#top">Back to top ↑</a>
+            </nav>
         </div>
-        <div class="footer__word" aria-hidden="true">SHIRAGUPPI</div>
     </footer>
 
-    <!-- ============================== COMMAND PALETTE ============================== -->
+    <!-- Quick navigation (⌘K / Ctrl K) -->
     <div class="cmdk" id="cmdk" hidden>
         <div class="cmdk__scrim" data-cmdk-close></div>
-        <div class="cmdk__panel" role="dialog" aria-modal="true" aria-label="Command menu">
+        <div class="cmdk__panel" role="dialog" aria-modal="true" aria-label="Quick navigation">
             <div class="cmdk__search">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
-                <input class="cmdk__input" id="cmdk-input" type="text" placeholder="Jump to a section or run an action…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="cmdk-list" aria-autocomplete="list">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+                <input class="cmdk__input" id="cmdk-input" type="text" placeholder="Jump to a section or action…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="cmdk-list" aria-autocomplete="list">
                 <kbd>esc</kbd>
             </div>
             <div class="cmdk__list" id="cmdk-list" role="listbox" aria-label="Results"></div>
-            <div class="cmdk__foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> select</span><span><kbd>esc</kbd> close</span></div>
+            <div class="cmdk__foot"><span><kbd>↑</kbd> <kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> select</span></div>
         </div>
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg><span id="toast-text">Copied</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg><span id="toast-text">Copied</span>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/site.js" defer></script>
 </body>
 
 </html>
